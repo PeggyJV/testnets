@@ -49,7 +49,7 @@ oracle-feeder keys add feeder
 
 # generate the gentx file
 sommelier add-genesis-account $(sommelier keys show validator -a --keyring-backend test) 10000000000stake
-sommelier gentx validator 100000000000000stake --chain-id merlot --keyring-backend test
+sommelier gentx validator 1000000000stake --chain-id merlot --keyring-backend test
 # this outputs a file path, that is where your gentx.json resides
 
 # Next gather the necessary info for your addesses file
