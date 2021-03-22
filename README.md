@@ -1,13 +1,14 @@
 # testnets
 
-The following describes what is requried for a single VM that will act as a validator in a `sommelier` testnet. 
+The following describes what is requried for a single VM that will act as a validator in a `sommelier` testnet.
 
 ## VM Requirements
 
 Compute: 2 CPU
 RAM: 8 GB
 Disk: 50GB-100GB
-Open Ports: 
+Open Ports:
+
 - 26656 (tendermint p2p)
 - 26657 (tendermint rpc)
 - 9090  (tendermint grpc)
@@ -25,12 +26,14 @@ After you spin up your VM with the above specs, install the following dependanci
 ## Key generation and `gentx` signature
 
 In this step you will generate your keys that will be used for:
+
 1. Validating on the Cosmos chain
 2. Signing for oracle-feeder transactions
 3. Signing for ETH transactions
 4. Signing for orchestrator transactions
 
 Then you will:
+
 1. Use those keys to sign a `gentx`
 2. Gather addresses from each key and some other information to generate a `merlot/addresses/{name}.json` file
 
@@ -54,7 +57,7 @@ sommelier gentx validator 1000000000stake --chain-id merlot --keyring-backend te
 
 # Next gather the necessary info for your addesses file
 sommelier keys show validator --keyring-backend test -a
-sommelier keys show orchestartor --keyring-backend test -a
+sommelier keys show orchestrator --keyring-backend test -a
 oracle-feeder keys show feeder
 sommelier eth-keys show 1
 sommelier tendermint show-node-id
@@ -87,7 +90,7 @@ This should contain the json from your `gentx` file.
 
 ## Configuration Pt 1
 
-Before logging out of your machine, now is a great time to prepare configuration files for both `oracle-feeder` and `sommelier`. Your 
+Before logging out of your machine, now is a great time to prepare configuration files for both `oracle-feeder` and `sommelier`. Your
 
 ### `~/.oracle-feeder/config.yaml`
 
@@ -131,39 +134,48 @@ Now we wait for all testnet participants to submit their files. Once they are su
 ## Deploy ETH Contracts for IL module
 
 - [ ] Deploy `TestTokenBatchMiddleware`
-    * [ ] Deploy script/instructions
-    * [ ] HASH: `""`
+  - [ ] Deploy script/instructions
+  - [ ] HASH: `""`
 - [ ] Deploy `TestUniswapLiquidity`
-    * [ ] Deploy script/instructions
-    * [ ] HASH: `""`
+  - [ ] Deploy script/instructions
+  - [ ] HASH: `""`
 
 ## Genesis Mutations
 
 The following changes need to be made to a generated genesis file for sommelier.
 
 - [ ] Add funds to each cosmos address in the `./merlot/addresses/` folder
-    - [ ] `sommelier add–genesis-account {address} 1000000000000stake,1000000000000usomm`
+  - [ ] `sommelier add–genesis-account {address} 1000000000000stake,1000000000000usomm`
 - [ ] Add denom metadata for `usomm` and `stake`
+
     ```bash
     jq '.app_state.bank.denom_metadata += [{"base": "usomm", display: "usomm", "description": "A non-staking test token", "denom_units": [{"denom": "usomm", "exponent": 6}]}, {"base": "stake", display: "stake", "description": "A staking test token", "denom_units": [{"denom": "stake", "exponent": 6}]}]' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
+
 - [ ] Add contract address for batch contract
+
     ```bash
     jq '.app_state.il.params.batch_contract_address = "TBD"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
+
 - [ ] Add contract address for liquidity contract
+
     ```bash
     jq '.app_state.il.params.liquidity_contract_address = "TBD"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
+
 - [ ] Add chain id for goreli testnet
+
     ```bash
     jq '.app_state.peggy.params.bridge_chain_id = "5"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
+
 - [ ] Increase slash window for oracle feeder
+
     ```bash
     jq '.app_state.oracle.params.slash_window = "1000000"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
@@ -187,7 +199,7 @@ Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` co
 persistent_peers = ""
 ```
 
-## Start validator 
+## Start validator
 
 ```bash
 sudo systemctl start sommelier && journalctl -u sommelier -f
@@ -245,4 +257,3 @@ sudo systemctl start orchestrator && journalctl -u orchestrator -f
 ```
 
 ## WE ARE ALL UP
-
