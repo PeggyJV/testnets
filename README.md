@@ -54,7 +54,7 @@ sommelier gentx validator 1000000000stake --chain-id merlot --keyring-backend te
 
 # Next gather the necessary info for your addesses file
 sommelier keys show validator --keyring-backend test -a
-sommelier keys show orchestartor --keyring-backend test -a
+sommelier keys show orchestrator --keyring-backend test -a
 oracle-feeder keys show feeder
 sommelier eth-keys show 1
 sommelier tendermint show-node-id
