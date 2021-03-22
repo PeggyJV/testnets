@@ -163,7 +163,7 @@ The following changes need to be made to a generated genesis file for sommelier.
 - [ ] Add contract address for liquidity contract
 
     ```bash
-    jq '.app_state.il.params.liquidity_contract_address = "TBD"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    jq '.app_state.il.params.liquidity_contract_address = "0xB757488003d0A31f2761Fd8876C6f2bf4a03f740"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
