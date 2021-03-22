@@ -5,7 +5,7 @@ The following set of commands will install go and configure your `$GOPATH` on mo
 ```bash
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install wget build-essential git nano jq make -y 
+sudo apt install wget build-essential git nano jq make snapd -y 
 sudo snap install go --classic
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.profile
 echo "export GOPATH=$HOME/go" >> ~/.profile
