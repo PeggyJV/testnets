@@ -133,48 +133,48 @@ Now we wait for all testnet participants to submit their files. Once they are su
 
 ## Deploy ETH Contracts for IL module
 
-- [ ] Deploy `TestTokenBatchMiddleware`
-  - [ ] Deploy script/instructions
-  - [ ] HASH: `""`
-- [ ] Deploy `TestUniswapLiquidity`
-  - [ ] Deploy script/instructions
-  - [ ] HASH: `""`
+- [x] Deploy `TestTokenBatchMiddleware`
+  - [x] Deploy script/instructions
+  - [x] HASH: `"0x439021d5a835C42a7026e71c5a2352602fb41EcE"`
+- [x] Deploy `TestUniswapLiquidity`
+  - [x] Deploy script/instructions
+  - [x] HASH: `"0xB757488003d0A31f2761Fd8876C6f2bf4a03f740"`
 
 ## Genesis Mutations
 
 The following changes need to be made to a generated genesis file for sommelier.
 
-- [ ] Add funds to each cosmos address in the `./merlot/addresses/` folder
-  - [ ] `sommelier add–genesis-account {address} 1000000000000stake,1000000000000usomm`
-- [ ] Add denom metadata for `usomm` and `stake`
+- [x] Add funds to each cosmos address in the `./merlot/addresses/` folder
+  - [x] `sommelier add–genesis-account {address} 1000000000000stake,1000000000000usomm`
+- [x] Add denom metadata for `usomm` and `stake`
 
     ```bash
     jq '.app_state.bank.denom_metadata += [{"base": "usomm", display: "usomm", "description": "A non-staking test token", "denom_units": [{"denom": "usomm", "exponent": 6}]}, {"base": "stake", display: "stake", "description": "A staking test token", "denom_units": [{"denom": "stake", "exponent": 6}]}]' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
-- [ ] Add contract address for batch contract
+- [x] Add contract address for batch contract
 
     ```bash
-    jq '.app_state.il.params.batch_contract_address = "TBD"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    jq '.app_state.il.params.batch_contract_address = "0x439021d5a835C42a7026e71c5a2352602fb41EcE"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
-- [ ] Add contract address for liquidity contract
+- [x] Add contract address for liquidity contract
 
     ```bash
     jq '.app_state.il.params.liquidity_contract_address = "0xB757488003d0A31f2761Fd8876C6f2bf4a03f740"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
-- [ ] Add chain id for goreli testnet
+- [x] Add chain id for goreli testnet
 
     ```bash
     jq '.app_state.peggy.params.bridge_chain_id = "5"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
-- [ ] Increase slash window for oracle feeder
+- [x] Increase slash window for oracle feeder
 
     ```bash
     jq '.app_state.oracle.params.slash_window = "1000000"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
@@ -188,7 +188,7 @@ Copy all the `./merlot/gentx/` files into `~/.sommelier/config/gentx/` and run t
 ```bash
 sommelier collect-gentxs
 jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
-# HASH: TBD
+# HASH: fe570afc239e4a935e57f1e170bc9cb647fecd332bdddd5c54015b83b6baaa2d
 ```
 
 ## Configuration Pt 2
@@ -196,7 +196,7 @@ jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
 Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./merlot/addresses/` files. A string will be provided:
 
 ```toml
-persistent_peers = ""
+persistent_peers = "25f0e83d1f03a8de0956fe858fd8041019d14031@35.247.110.115:26656,a9f8af97e7bae0fe6ac83d4548ff5328fe6ef087@104.131.106.11:26656,61129d45cea573879d4cd300230e40573965bfcd@10.128.0.5:26656,5580b2bdea2519d44e4e13374174fc340880d51f@198.199.91.35:26656,0f8cdce37d2210572cd9df7099d69ab3bc760d13@ 66.36.234.114:26656"
 ```
 
 ## Start validator
@@ -218,6 +218,16 @@ sudo systemctl start oracle-feeder && journalctl -u oracle-feeder -f
 
 ## Delegate keys for orchestrator
 
+```bash
+register_delegate_keys
+    --validator-phrase=""
+    --ethereum-key=""
+    --cosmos-phrase=""
+    --cosmos-rpc="http://localhost:26657"
+    --fees="stake"
+```
+
+> TODO: make this work
 ```bash
 sommelier tx peggy set-orchestrator-address \
     $(sommelier keys show validator -a --keyring-backend test --bech val) \
