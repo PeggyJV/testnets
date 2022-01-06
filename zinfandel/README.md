@@ -75,29 +75,32 @@ sommelier gentx validator 1000000000stake $(gorc --config ~/gorc/config.toml key
 
 ```
 
-```bash
-# Next gather the necessary info for your addesses file
-sommelier keys show validator --keyring-backend test -a
-sommelier keys show orchestrator --keyring-backend test -a
-oracle-feeder keys show feeder
-sommelier eth-keys show 1
-sommelier tendermint show-node-id
-```
-
 ## Upload files to testnets repo
 
 Make a PR to this repo with the following files:
 
-#### `./merlot/addresses/{name}.json`
+### `./zinfandel/addresses/{name}.json`
 
-This should contain a json blob with the following schema/data:
+Run the following set of commands to print out your validator address, orchestrator address, ethereum address, node ID, and network information to retrieve your IP address.
+
+```bash
+sommelier keys show validator --keyring-backend test -a
+gorc --config ~/gorc/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2
+gorc --config ~/gorc/config.toml keys eth show signer
+sommelier tendermint show-node-id
+hostname -I | cut -d " " -f1
+
+```
+
+If the last command doesn't give you a publicly routable IP, try running it without the pipe to `cut` and pick the correct IP address.
+
+Fill out `./zinfandel/addresses/{name}.json` with the following schema/data using the data we just printed above:
 
 ```json
 {
-    "cosmos-addresses": [
-        "cosmos18zxhdqsqhx5pl7eyqqgxacwqdxwxx3umj6wvys",
-        "cosmos12wms6ghmdsewxpvgzfx39tklnmtmzauf3mqr4p",
-        "cosmos1m38004fjd646gncuqlz08p8al5qt7juvze6a48"
+    "somm-addresses": [
+        "somm18zxhdqsqhx5pl7eyqqgxacwqdxwxx3umj6wvys",
+        "somm12wms6ghmdsewxpvgzfx39tklnmtmzauf3mqr4p"
     ],
     "eth-address": "0x004cec59a7c332188602079179bd6d4baa4c6a75",
     "node-id": "25f0e83d1f03a8de0956fe858fd8041019d14031",
@@ -105,33 +108,18 @@ This should contain a json blob with the following schema/data:
 }
 ```
 
-#### `./merlot/gentx/{name}.json`
+### `./mzinfandelerlot/gentx/{name}.json`
 
-This should contain the json from your `gentx` file.
+This should contain the json from your `gentx` file. The output will be compact, you can prettify it by running:
+
+```bash
+cat <gentx_file_path> | jq
+
+```
 
 ## Configuration Pt 1
 
-Before logging out of your machine, now is a great time to prepare configuration files for both `oracle-feeder` and `sommelier`. Your
-
-### `~/.oracle-feeder/config.yaml`
-
-Your feeder config file should match the one below:
-
-```yaml
-uniswap-subgraph: http://35.197.17.185:8000/subgraphs/name/davekaj/uniswap
-signing-key: feeder
-chain-grpc: http://localhost:9090
-chain-rpc: http://localhost:26657
-chain-id: merlot
-gas-prices: 0.025stake
-```
-
-You can test this configuration by running the following:
-
-```bash
-# test feeder, this should return a JSON blob
-oracle-feeder query uniswap-data
-```
+Before logging out of your machine, now is a great time to prepare the configuration file for `sommelier`.
 
 ### `~/.sommelier/config/app.toml`
 
