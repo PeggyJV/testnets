@@ -1,22 +1,8 @@
 # Install Binaries
 
-## `sommelier` and `oracle-feeder`
+## `sommelier`
 
-If you have a [configured go environment](./install-go.md) the following commands will install the `sommelier` binary on your system:
-
-```bash
-cd ~
-mkdir -p go/src/github.com/peggyjv/
-cd go/src/github.com/peggyjv/
-git clone https://github.com/peggyjv/sommelier.git
-cd sommelier
-git checkout main
-make install
-cd ~
-sudo cp go/bin/sommelier /usr/bin/sommelier
-```
-
-Alternatively, you can install the sommelier binary from an existing release:
+The following commands will install the `sommelier` binary on your system:
 
 ```bash
 cd ~
@@ -28,9 +14,9 @@ sudo cp sommelier /usr/bin/sommelier
 cd ~
 ```
 
-## `orchestrator`, `client` and `register-delegate-keys`
+## `gorc` and `register-delegate-keys`
 
-The following commands install the rust orchestrator
+The following commands install the rust orchestrator binaries on your system:
 
 ```bash
 cd ~

@@ -19,7 +19,6 @@ Open Ports:
 
 After you spin up your VM with the above specs, install the following dependancies and configure your unit files:
 
-- [ ] [Install Go](./docs/install-go.md)
 - [ ] [Install Binaries](./docs/install-bins.md)
 - [ ] [Setup `systemd` unit files](./docs/systemd.md) (Optional but recommended)
 
