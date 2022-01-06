@@ -1,6 +1,6 @@
-# testnets
+# Zinfandel testnet
 
-The following describes what is requried for a single VM that will act as a validator in a `sommelier` testnet.
+The following describes what is requried for a single VM that will act as a validator in the `sommelier` zinfandel testnet. This testnet will involve upgrading from `sommelier` 2.0.0 to 3.0.0, so we will first be installing the earlier binary.
 
 ## VM Requirements
 
@@ -15,9 +15,9 @@ Open Ports:
 - 1317  (cosmos-sdk api)
 - 30303 (geth p2p)
 
-## Dependancies
+## Dependencies
 
-After you spin up your VM with the above specs, install the following dependancies and configure your unit files:
+After you spin up your VM with the above specs, install the following dependencies and configure your systemd unit files.
 
 - [ ] [Install Binaries](./docs/install-bins.md)
 - [ ] [Setup `systemd` unit files](./docs/systemd.md) (Optional but recommended)
