@@ -20,34 +20,32 @@ Open Ports:
 After you spin up your VM with the above specs, install the following dependencies and configure your systemd unit files.
 
 - [ ] [Install Binaries](./docs/install-bins.md)
-- [ ] [Setup `systemd` unit files](./docs/systemd.md) (Optional but recommended)
+- [ ] [Set up `gorc` config](./docs/gorc.md)
+- [ ] [Setup `systemd` unit files](./docs/systemd.md)
 
 ## Key generation and `gentx` signature
 
 In this step you will generate your keys that will be used for:
 
 1. Validating on the Cosmos chain
-2. Signing for oracle-feeder transactions
-3. Signing for ETH transactions
-4. Signing for orchestrator transactions
+2. Signing for ETH transactions
+3. Signing for orchestrator transactions
 
 Then you will:
 
 1. Use those keys to sign a `gentx`
-2. Gather addresses from each key and some other information to generate a `merlot/addresses/{name}.json` file
+2. Gather addresses from each key and some other information to generate a `zinfandel/addresses/{name}.json` file
 
 ```bash
-# Initialize config files for both oracle-feeder and sommelier
+# Initialize the config file for sommelier
 # NOTE: this also generates ~/.sommelier/config/priv_validator.json that is mission critical
-sommelier init moniker --chain-id merlot
-oracle-feeder config init 
+sommelier init moniker --chain-id zinfandel
 
 # backup the mnemonics and private keys that you are generating here
 # record the public keys that are generated here as well to create your json file
 sommelier keys add validator --keyring-backend test
 sommelier keys add orchestrator --keyring-backend test
 sommelier eth-keys add
-oracle-feeder keys add feeder
 
 # generate the gentx file
 sommelier add-genesis-account $(sommelier keys show validator -a --keyring-backend test) 10000000000stake
