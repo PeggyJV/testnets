@@ -26,4 +26,5 @@ rpc = "http://localhost:8545"
 key_derivation_path = "m/44'/118'/0'/0/0"
 grpc = "http://localhost:9090"
 prefix = "somm"
+
 ```

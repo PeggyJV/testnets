@@ -21,37 +21,61 @@ After you spin up your VM with the above specs, install the following dependenci
 
 - [ ] [Install Binaries](./docs/install-bins.md)
 - [ ] [Set up `gorc` config](./docs/gorc.md)
-- [ ] [Setup `systemd` unit files](./docs/systemd.md)
+- [ ] [Set up `systemd` unit files](./docs/systemd.md)
 
 ## Key generation and `gentx` signature
 
 In this step you will generate your keys that will be used for:
 
 1. Validating on the Cosmos chain
-2. Signing for ETH transactions
-3. Signing for orchestrator transactions
+2. Signing for orchestrator transactions
+3. Signing for ETH transactions
 
 Then you will:
 
 1. Use those keys to sign a `gentx`
 2. Gather addresses from each key and some other information to generate a `zinfandel/addresses/{name}.json` file
 
+### Initialize the config file for sommelier
+
+> NOTE: this also generates `~/.sommelier/config/priv_validator.json` that is mission critical
+
 ```bash
-# Initialize the config file for sommelier
-# NOTE: this also generates ~/.sommelier/config/priv_validator.json that is mission critical
 sommelier init moniker --chain-id zinfandel
 
-# backup the mnemonics and private keys that you are generating here
-# record the public keys that are generated here as well to create your json file
+```
+
+### Create cosmos and ethereum keys
+
+Create backup files of the output of these commands. They contain your private mnemonics and your public addresses for your cosmos and ethereum keys.
+
+```bash
 sommelier keys add validator --keyring-backend test
-sommelier keys add orchestrator --keyring-backend test
-sommelier eth-keys add
+gorc --config ~/gorc/config.toml keys cosmos add orchestrator
+gorc --config ~/gorc/config.toml keys eth add signer
 
-# generate the gentx file
+```
+
+### Get the delegate key signature
+
+We'll be using the generated signature when we run gentx in the next step.
+
+```bash
+echo "0x$(gorc --config ~/gorc/config.toml sign-delegate-keys -a signer $(sommelier keys --keyring-backend test show validator --bech val -a) 0)"
+
+```
+
+### Generate the gentx file
+
+These commands will output a file path pointing to your gentx.json file. Replace <delegate_key_signature> with the value you just generated in the last command.
+
+```bash
 sommelier add-genesis-account $(sommelier keys show validator -a --keyring-backend test) 10000000000stake
-sommelier gentx validator 1000000000stake --chain-id merlot --keyring-backend test
-# this outputs a file path, that is where your gentx.json resides
+sommelier gentx validator 1000000000stake $(gorc --config ~/gorc/config.toml keys eth show signer) $(gorc --config ~/gorc/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2) <delegate_key_signature> --chain-id zinfandel --keyring-backend test
 
+```
+
+```bash
 # Next gather the necessary info for your addesses file
 sommelier keys show validator --keyring-backend test -a
 sommelier keys show orchestrator --keyring-backend test -a
