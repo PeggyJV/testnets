@@ -135,6 +135,7 @@ To turn on the API, open `~/.sommelier/config/app.toml` in an editor and make th
 # Enable defines if the API server should be enabled.
 enable = true
 ```
+## TODO(bolten): everything below this point is mostly copied from the last testnet and much of it is likely incorrect, but left here as scaffolding
 
 ## Next steps - Half way point
 
@@ -153,7 +154,7 @@ Now we wait for all testnet participants to submit their files. Once they are su
 
 The following changes need to be made to a generated genesis file for sommelier.
 
-- [x] Add funds to each cosmos address in the `./merlot/addresses/` folder
+- [x] Add funds to each cosmos address in the `./zinfandel/addresses/` folder
   - [x] `sommelier add–genesis-account {address} 1000000000000stake,1000000000000usomm`
 - [x] Add denom metadata for `usomm` and `stake`
 
@@ -192,7 +193,7 @@ The following changes need to be made to a generated genesis file for sommelier.
 
 ## Collect Gentxs and genesis hash
 
-Copy all the `./merlot/gentx/` files into `~/.sommelier/config/gentx/` and run the following:
+Copy all the `./zinfandel/gentx/` files into `~/.sommelier/config/gentx/` and run the following:
 
 ```bash
 sommelier collect-gentxs
@@ -202,7 +203,7 @@ jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
 
 ## Configuration Pt 2
 
-Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./merlot/addresses/` files. A string will be provided:
+Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./zinfandel/addresses/` files. A string will be provided:
 
 ```toml
 persistent_peers = "25f0e83d1f03a8de0956fe858fd8041019d14031@35.247.110.115:26656,a9f8af97e7bae0fe6ac83d4548ff5328fe6ef087@104.131.106.11:26656,61129d45cea573879d4cd300230e40573965bfcd@10.128.0.5:26656,5580b2bdea2519d44e4e13374174fc340880d51f@198.199.91.35:26656,0f8cdce37d2210572cd9df7099d69ab3bc760d13@ 66.36.234.114:26656"
@@ -219,7 +220,7 @@ At this point the network will begin to come online. The remaining steps are to 
 ## Delegate key to oracle feeder and start oracle feeder
 
 ```bash
-sommelier tx oracle delegate-feeder $(oracle-feeder keys show feeder) --from validator --chain-id merlot --keyring-backend test
+sommelier tx oracle delegate-feeder $(oracle-feeder keys show feeder) --from validator --chain-id zinfandel --keyring-backend test
 sudo systemctl start oracle-feeder && journalctl -u oracle-feeder -f
 # You should see logging for each cosmos block then a set of transactions every 5th block
 # Errors will kill this process and set it into a crash backoff loop
@@ -240,13 +241,13 @@ register_delegate_keys
 ```bash
 sommelier tx peggy set-orchestrator-address \
     $(sommelier keys show validator -a --keyring-backend test --bech val) \
-    $(oracle-feeder key show feeder) \ 
+    $(oracle-feeder key show feeder) \
     $(sommelier eth-keys show 1) \
     # TODO: The below flags are not present on the sommelier binary currently
-    --from validator \ 
-    --chain-id merlot \ 
+    --from validator \
+    --chain-id zinfandel \
     --fees 25000stake \
-    --keyring-backend test -y 
+    --keyring-backend test -y
 ```
 
 At this point we need to wait for all genesis participants to submit their eth keys then the peggy contract can be deployed.
