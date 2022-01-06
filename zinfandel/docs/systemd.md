@@ -4,7 +4,7 @@ The following are example systemd unit files to help you manage the variety of s
 
 > NOTE: These files are all written for the `ubuntu` user. The user on your system may be different as well as having different `ExecStart` locations. Make sure the files are customized for your environment!!!
 
-### `/etc/systemd/system/sommelier.service`
+## `/etc/systemd/system/sommelier.service`
 
 ```
 [Unit]
@@ -15,7 +15,7 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=/home/ubuntu
-ExecStart=/home/ubuntu/go/bin/sommelier start
+ExecStart=/usr/bin/sommelier start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -24,11 +24,9 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 ```
 
-### `/etc/systemd/system/orchestrator.service`
+## `/etc/systemd/system/orchestrator.service`
 
-> NOTE: The orchestrator requires some arguements from the key generation step later in the setup. Make sure to save the phrase from the cosmos key generation as well as the private key from the ETH key generation and input them as arguements here. 
-
-> NOTE: This also requires the peggy address on the ETH chain which will not be available until after network start.
+> NOTE: The orchestrator requires some arguments from the key generation step later in the setup. The cosmos-key and ethereum-key argument will be names of private keys from the keystore we will be creating.
 
 ```
 [Unit]
@@ -40,7 +38,7 @@ Type=simple
 User=ubuntu
 Environment="RUST_LOG=INFO"
 WorkingDirectory=/home/ubuntu
-ExecStart=/usr/bin/orchestrator --cosmos-phrase="" --ethereum-key="" --cosmos-legacy-rpc="http://localhost:1317" --cosmos-grpc="http://localhost:9090" --ethereum-rpc="http://localhost:8545" --fees=stake --contract-address=""
+ExecStart=/usr/bin/gorc orchestrator start --cosmos-key="" --ethereum-key=""
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
@@ -49,7 +47,7 @@ LimitNOFILE=4096
 WantedBy=multi-user.target
 ```
 
-### `/etc/systemd/system/geth.service`
+## `/etc/systemd/system/geth.service`
 
 ```
 [Unit]
