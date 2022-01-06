@@ -108,7 +108,7 @@ Fill out `./zinfandel/addresses/{name}.json` with the following schema/data usin
 }
 ```
 
-### `./mzinfandelerlot/gentx/{name}.json`
+### `./zinfandel/gentx/{name}.json`
 
 This should contain the json from your `gentx` file. The output will be compact, you can prettify it by running:
 
