@@ -19,6 +19,13 @@ Open Ports:
 
 After you spin up your VM with the above specs, install the following dependencies and configure your systemd unit files.
 
+```bash
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install wget build-essential git nano jq make snapd -y
+
+```
+
 - [ ] [Install Binaries](./docs/install-bins.md)
 - [ ] [Set up `gorc` config](./docs/gorc.md)
 - [ ] [Set up `systemd` unit files](./docs/systemd.md)
