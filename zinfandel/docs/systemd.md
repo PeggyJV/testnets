@@ -26,7 +26,7 @@ WantedBy=multi-user.target
 
 ## `/etc/systemd/system/orchestrator.service`
 
-> NOTE: The orchestrator requires some arguments from the key generation step later in the setup. The cosmos-key and ethereum-key argument will be names of private keys from the keystore we will be creating.
+> NOTE: The cosmos-key and ethereum-key arguments are referencing keys we will be creating at a later step.
 
 ```
 [Unit]
@@ -38,7 +38,7 @@ Type=simple
 User=ubuntu
 Environment="RUST_LOG=INFO"
 WorkingDirectory=/home/ubuntu
-ExecStart=/usr/bin/gorc orchestrator start --cosmos-key="" --ethereum-key=""
+ExecStart=/usr/bin/gorc --config /home/ubuntu/gorc/config.toml orchestrator start --cosmos-key orchestrator --ethereum-key signer
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
