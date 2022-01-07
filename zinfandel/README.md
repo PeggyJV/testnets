@@ -175,7 +175,7 @@ Copy all the `./zinfandel/gentx/` files into `~/.sommelier/config/gentx/` and ru
 ```bash
 sommelier collect-gentxs
 jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
-# HASH: fe570afc239e4a935e57f1e170bc9cb647fecd332bdddd5c54015b83b6baaa2d
+# HASH: 001a0d48a82ff374b3ff22e6552c342b3b93d5d443150b5a78b07284d3de8ab3
 ```
 
 ## Configuration Pt 2
