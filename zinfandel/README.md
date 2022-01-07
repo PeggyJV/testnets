@@ -148,15 +148,6 @@ enable = true
 
 Now we wait for all testnet participants to submit their files. Once they are submitted we can continue with the network bootstrap process. At this point the `batch` and `il` contracts can be deployed to Goreli. The resultant hashes should be filled in below:
 
-## Deploy ETH Contracts for IL module
-
-- [x] Deploy `TestTokenBatchMiddleware`
-  - [x] Deploy script/instructions
-  - [x] HASH: `"0x439021d5a835C42a7026e71c5a2352602fb41EcE"`
-- [x] Deploy `TestUniswapLiquidity`
-  - [x] Deploy script/instructions
-  - [x] HASH: `"0xB757488003d0A31f2761Fd8876C6f2bf4a03f740"`
-
 ## Genesis Mutations
 
 The following changes need to be made to a generated genesis file for sommelier.
@@ -170,31 +161,10 @@ The following changes need to be made to a generated genesis file for sommelier.
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
-- [x] Add contract address for batch contract
-
-    ```bash
-    jq '.app_state.il.params.batch_contract_address = "0x439021d5a835C42a7026e71c5a2352602fb41EcE"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
-    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
-    ```
-
-- [x] Add contract address for liquidity contract
-
-    ```bash
-    jq '.app_state.il.params.liquidity_contract_address = "0xB757488003d0A31f2761Fd8876C6f2bf4a03f740"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
-    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
-    ```
-
 - [x] Add chain id for goreli testnet
 
     ```bash
     jq '.app_state.peggy.params.bridge_chain_id = "5"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
-    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
-    ```
-
-- [x] Increase slash window for oracle feeder
-
-    ```bash
-    jq '.app_state.oracle.params.slash_window = "1000000"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
@@ -213,7 +183,7 @@ jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
 Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./zinfandel/addresses/` files. A string will be provided:
 
 ```toml
-persistent_peers = "25f0e83d1f03a8de0956fe858fd8041019d14031@35.247.110.115:26656,a9f8af97e7bae0fe6ac83d4548ff5328fe6ef087@104.131.106.11:26656,61129d45cea573879d4cd300230e40573965bfcd@10.128.0.5:26656,5580b2bdea2519d44e4e13374174fc340880d51f@198.199.91.35:26656,0f8cdce37d2210572cd9df7099d69ab3bc760d13@ 66.36.234.114:26656"
+persistent_peers = "1d86bf16f5709ab8afcd2e0501619ed3b0805cac@35.197.62.120:26656,2141ae992abc58fb4d88ce2b743e9283abfb4209@147.182.229.248:26656,f8130b0f831faac68b948adf56ce09e34825d629@34.71.31.2:26656,b352955a2343e7e409030666a9cdd036b7fe3721@35.226.109.154:26656,50ab8b874ec4de485115aa922793a0e83729348d@35.226.103.234:26656"
 ```
 
 ## Start validator
