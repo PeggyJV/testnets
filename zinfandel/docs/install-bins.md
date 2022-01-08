@@ -17,8 +17,8 @@ cd ~
 
 ```bash
 cd ~
-wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.3.1/gorc
-wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.3.1/register-delegate-keys
+wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/gorc
+wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/register-delegate-keys
 chmod +x gorc register-delegate-keys
 sudo mv gorc /usr/bin
 sudo mv register-delegate-keys /usr/bin
