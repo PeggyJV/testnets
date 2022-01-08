@@ -1,0 +1,68 @@
+{
+  "body": {
+    "messages": [
+      {
+        "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+        "description": {
+          "moniker": "SW33_SOM",
+          "identity": "",
+          "website": "",
+          "security_contact": "",
+          "details": ""
+        },
+        "commission": {
+          "rate": "0.100000000000000000",
+          "max_rate": "0.200000000000000000",
+          "max_change_rate": "0.010000000000000000"
+        },
+        "min_self_delegation": "1",
+        "delegator_address": "somm1t2wradzhw2f0a9zzaq2sk2wk4qp4gckd4nprxv",
+        "validator_address": "sommvaloper1t2wradzhw2f0a9zzaq2sk2wk4qp4gckdqd07pr",
+        "pubkey": {
+          "@type": "/cosmos.crypto.ed25519.PubKey",
+          "key": "sCvtSTDX7Hc50mngvZtszHEWyeSrjsLkPwsKjJlp/mU="
+        },
+        "value": {
+          "denom": "stake",
+          "amount": "1000000000"
+        }
+      },
+      {
+        "@type": "/gravity.v1.MsgDelegateKeys",
+        "validator_address": "sommvaloper1t2wradzhw2f0a9zzaq2sk2wk4qp4gckdqd07pr",
+        "orchestrator_address": "somm1f7awu8c40kf9pj85l4p3vd8pezgtenfw9vsdqr",
+        "ethereum_address": "0x3EA5cB5D4cA1BD78138eb4e569921adb6c799c5f",
+        "eth_signature": "ZQDPVG5wULiw8hY3MDoiPphOj6539wAIZvVp25wwI6QrmY3e1Ba6qYbzJBBgwt4E214XLtx62CoDt2x3qTr0Shw="
+      }
+    ],
+    "memo": "2dd1f0cf0ab2309b000d8c833e879daf082097bc@23.88.38.132:26656",
+    "timeout_height": "0",
+    "extension_options": [],
+    "non_critical_extension_options": []
+  },
+  "auth_info": {
+    "signer_infos": [
+      {
+        "public_key": {
+          "@type": "/cosmos.crypto.secp256k1.PubKey",
+          "key": "AnsHrQJxAYK4uUjDeXytTSh5lO53qdUfTczqXTGZr32h"
+        },
+        "mode_info": {
+          "single": {
+            "mode": "SIGN_MODE_DIRECT"
+          }
+        },
+        "sequence": "0"
+      }
+    ],
+    "fee": {
+      "amount": [],
+      "gas_limit": "200000",
+      "payer": "",
+      "granter": ""
+    }
+  },
+  "signatures": [
+    "xzKvWokL8MXYsEQMdpcMAT2cxcm9pGhk1iFzrGbJFspta0hC82lu61WItpIuotti75s+tjsMPhrAzNpd/YYWtA=="
+  ]
+}
