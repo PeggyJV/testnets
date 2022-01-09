@@ -1,0 +1,68 @@
+{
+  "body": {
+    "messages": [
+      {
+        "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+        "description": {
+          "moniker": "777stakes",
+          "identity": "",
+          "website": "",
+          "security_contact": "",
+          "details": ""
+        },
+        "commission": {
+          "rate": "0.100000000000000000",
+          "max_rate": "0.200000000000000000",
+          "max_change_rate": "0.010000000000000000"
+        },
+        "min_self_delegation": "1",
+        "delegator_address": "somm1cnep6a620gelvfl9n480eyjaepj6z9q2v37yf2",
+        "validator_address": "sommvaloper1cnep6a620gelvfl9n480eyjaepj6z9q2e0sew9",
+        "pubkey": {
+          "@type": "/cosmos.crypto.ed25519.PubKey",
+          "key": "sMHJP5cBeCLjDwk5+pK1U5VZ68RKgP7kQRcvt8F8i+E="
+        },
+        "value": {
+          "denom": "stake",
+          "amount": "1000000000"
+        }
+      },
+      {
+        "@type": "/gravity.v1.MsgDelegateKeys",
+        "validator_address": "sommvaloper1cnep6a620gelvfl9n480eyjaepj6z9q2e0sew9",
+        "orchestrator_address": "somm1qjpcep6svc0aazkxmzd3nmgp6le74jq968e0u5",
+        "ethereum_address": "0xe318Be79088554DCBe7e389f74A4AE496F5438Ad",
+        "eth_signature": "XryZ78Q6JG3JNFFxDTmWCGD2ZFIwqDl2rvNaearPVvg9857N0zfM/4My2FRGAuHaL/o4lU6WaBYb3hTJ6OutWxs="
+      }
+    ],
+    "memo": "3e495dd8b4792f3a8d357538a82dfbb62c47ba93@65.108.151.86:26656",
+    "timeout_height": "0",
+    "extension_options": [],
+    "non_critical_extension_options": []
+  },
+  "auth_info": {
+    "signer_infos": [
+      {
+        "public_key": {
+          "@type": "/cosmos.crypto.secp256k1.PubKey",
+          "key": "Ah85S2Rg/BqNMq0Kk7pZrUIpt48b1gJkPDaKctsyT22X"
+        },
+        "mode_info": {
+          "single": {
+            "mode": "SIGN_MODE_DIRECT"
+          }
+        },
+        "sequence": "0"
+      }
+    ],
+    "fee": {
+      "amount": [],
+      "gas_limit": "200000",
+      "payer": "",
+      "granter": ""
+    }
+  },
+  "signatures": [
+    "avyOc7QF8x1xsCUZ8mCQotA9eS39k1gejBSMn7Ct3Xw7KW12mB+4JSrORnx7Z6DIL7S2r1NHmQPnQ+U3tHDRSQ=="
+  ]
+}
