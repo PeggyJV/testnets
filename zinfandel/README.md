@@ -68,13 +68,13 @@ gorc --config ~/gorc/config.toml keys eth add signer
 We'll be using the generated signature when we run gentx in the next step.
 
 ```bash
-echo "0x$(gorc --config ~/gorc/config.toml sign-delegate-keys -a signer $(sommelier keys --keyring-backend test show validator --bech val -a) 0)"
+echo $(gorc --config ~/gorc/config.toml sign-delegate-keys -a signer $(sommelier keys --keyring-backend test show validator --bech val -a) 0)
 
 ```
 
 ### Generate the gentx file
 
-These commands will output a file path pointing to your gentx.json file. Replace <delegate_key_signature> with the value you just generated in the last command.
+These commands will output a file path pointing to your gentx.json file. Replace <delegate_key_signature> with the value you just generated in the last command. If that value does not have a 0x prepended in front of it, you will need to add it.
 
 ```bash
 sommelier add-genesis-account $(sommelier keys show validator -a --keyring-backend test) 10000000000stake
