@@ -183,9 +183,8 @@ jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
 Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./zinfandel/addresses/` files. A string will be provided:
 
 ```toml
-persistent_peers = "1d86bf16f5709ab8afcd2e0501619ed3b0805cac@35.197.62.120:26656,2141ae992abc58fb4d88ce2b743e9283abfb4209@147.182.229.248:26656,f8130b0f831faac68b948adf56ce09e34825d629@34.71.31.2:26656,b352955a2343e7e409030666a9cdd036b7fe3721@35.226.109.154:26656,50ab8b874ec4de485115aa922793a0e83729348d@35.226.103.234:26656"
+persistent_peers = "3121ee15f0fd96d088cd01c4d931cc919f5b7ee8@137.184.88.9:26656,27463f8c25bc0132cb003d5abe887b0e6d3d6cd6@137.184.88.67:26656,b52d8404ca103fb711cfb88a66411f232b464c25@34.136.233.192:26656,a39b8311d62403a47d3fae1b9a42ab51a6ff10f2@34.72.58.161:26656"
 ```
-
 ## Start validator
 
 ```bash
