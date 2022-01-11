@@ -1,0 +1,68 @@
+{
+  "body": {
+    "messages": [
+      {
+        "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+        "description": {
+          "moniker": "Darvin",
+          "identity": "",
+          "website": "",
+          "security_contact": "",
+          "details": ""
+        },
+        "commission": {
+          "rate": "0.100000000000000000",
+          "max_rate": "0.200000000000000000",
+          "max_change_rate": "0.010000000000000000"
+        },
+        "min_self_delegation": "1",
+        "delegator_address": "somm1d6a3gcc8h8yqe3lw498t539axyamt9zdenmqlm",
+        "validator_address": "sommvaloper1d6a3gcc8h8yqe3lw498t539axyamt9zdvd4ac5",
+        "pubkey": {
+          "@type": "/cosmos.crypto.ed25519.PubKey",
+          "key": "yySvoqNCgqUCNLGAWTxf4XIpfnQtcUfRvNwiOAFUrw8="
+        },
+        "value": {
+          "denom": "stake",
+          "amount": "1000000000"
+        }
+      },
+      {
+        "@type": "/gravity.v1.MsgDelegateKeys",
+        "validator_address": "sommvaloper1d6a3gcc8h8yqe3lw498t539axyamt9zdvd4ac5",
+        "orchestrator_address": "somm1cqt8d7kcevkjwatwgkmxuwj8gyffsrg85zr3lu",
+        "ethereum_address": "0xb70Ae1Bc7222Fb7305aa1484C315de59316a8913",
+        "eth_signature": "p0R+CYakzJw010Xl7uLKlrR095Aff1JoWE3MSkRgkd1WjI6XnBtZYlxa3AoPgH666Rsq3wZeb7ae2QAOAGyghxw="
+      }
+    ],
+    "memo": "d301279debfaf3a5816fb1788a9411d49b00dfd5@5.161.70.110:26656",
+    "timeout_height": "0",
+    "extension_options": [],
+    "non_critical_extension_options": []
+  },
+  "auth_info": {
+    "signer_infos": [
+      {
+        "public_key": {
+          "@type": "/cosmos.crypto.secp256k1.PubKey",
+          "key": "A2CCCxGDcylS4+tZlIyRRqwi+3znX0UD5AdZZXaYSfCB"
+        },
+        "mode_info": {
+          "single": {
+            "mode": "SIGN_MODE_DIRECT"
+          }
+        },
+        "sequence": "0"
+      }
+    ],
+    "fee": {
+      "amount": [],
+      "gas_limit": "200000",
+      "payer": "",
+      "granter": ""
+    }
+  },
+  "signatures": [
+    "9gZG5SWm9vd4lpeV9DiAy3/MZ72Rhj9FDggf/nYvnIlZ79g8cOwKK4jMWqYCwkeSz1GdxOuPBkRxoDMzgv+T/g=="
+  ]
+}
