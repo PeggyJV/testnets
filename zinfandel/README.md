@@ -214,6 +214,37 @@ sudo systemctl start orchestrator && journalctl -u orchestrator -f
 
 ```
 
-You should see the orchestrator begin to emit logs
+You should see the orchestrator begin to emit logs.
 
-## TODO(bolten): governance proposal and upgrade process
+## Generate some ethereum state
+
+Part of the upgrade process will be wiping the Ethereum state as we migrate to a new contract. In order to verify this is working correctly, we must generate some ethereum events so there is state to wipe. The simplest way to do this is by making a large delegation to another validator, waiting to verify in the orchestrator logs that a valset update has completed, and this repeating this process a few times. This will push forward the ethereum event nonce and include some ethereum voting records on chain.
+
+## Submit the governance proposal
+
+You will need to replace "<upgrade_height>" with the appropriate block height at which the upgrade will be required. First, we will consider how long the governance vote period will last and add a decent chunk of minutes as buffer time. Since we have manually set our vote periods to 10 minutes, we'll wait 15 minutes from voting start to trigger the upgrade. Watch the sommelier node logs to estimate how long each block takes to get committed and calculate how many blocks to wait. In this particular case we will likely observe roughly 6 second blocks, meaning 10 blocks per minute and thus adding 150 blocks to the current block height to determine the upgrade height.
+
+```bash
+sommelier tx gov submit-proposal software-upgrade CabFranc --upgrade-height <upgrade_height> --deposit 100000stake --from foo --keyring-backend test --title CabFranc --description "foo" --chain-id zinfandel
+
+```
+
+## Vote for the proposal
+
+Each validator must submit their vote so the upgrade proposal can proceed.
+
+```bash
+sommelier tx gov vote 1 Yes --from foo --chain-id zinfandel -y --keyring-backend test
+
+```
+
+## Upgrade the binaries
+
+Wait until the upgrade height after passing the proposal. The sommelier node should panic and require the CabFranc upgrade, which will be present in the updated binary. At this point, you should shut down the orchestrator.
+
+```bash
+sudo systemctl stop orchestrator
+
+```
+
+## TODO(bolten): binary replacement, chain restart, new contract deployment, orchestrator restart
