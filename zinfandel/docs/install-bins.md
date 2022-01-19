@@ -13,26 +13,15 @@ cd ~
 
 ```
 
-## `gorc` and `register-delegate-keys`
+## `gorc`
 
 ```bash
 cd ~
+mkdir gorc_0.2.23
+cd gorc_0.2.23
 wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/gorc
-wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/register-delegate-keys
-chmod +x gorc register-delegate-keys
-sudo mv gorc /usr/bin
-sudo mv register-delegate-keys /usr/bin
-
-```
-
-## `geth`
-
-```bash
-cd ~
-wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.1-c2d2f4ed.tar.gz
-tar -xvf geth-linux-amd64-1.10.1-c2d2f4ed.tar.gz
-cd geth-linux-amd64-1.10.1-c2d2f4ed
-sudo cp geth /usr/bin/geth
+chmod +x gorc
+sudo cp gorc /usr/bin
 cd ~
 
 ```

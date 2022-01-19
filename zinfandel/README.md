@@ -123,7 +123,7 @@ cat <gentx_file_path> | jq
 
 ```
 
-## Configuration Pt 1
+## Enable the API
 
 Before logging out of your machine, now is a great time to prepare the configuration file for `sommelier`.
 
@@ -176,7 +176,7 @@ jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
 # HASH: 001a0d48a82ff374b3ff22e6552c342b3b93d5d443150b5a78b07284d3de8ab3
 ```
 
-## Configuration Pt 2
+## Configure persistent peers
 
 Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./zinfandel/addresses/` files. A string will be provided:
 
@@ -188,19 +188,30 @@ persistent_peers = "1d86bf16f5709ab8afcd2e0501619ed3b0805cac@35.197.62.120:26656
 
 ```bash
 sudo systemctl start sommelier && journalctl -u sommelier -f
+
 ```
 
 At this point the network will begin to come online. The remaining steps are to be completed once the network is online.
 
 ## Deploy Gravity contract
 
-This step only needs to be performed by one participant and should only be run once all the eth keys have been added.
+This step only needs to be performed by one participant and should only be run once all the eth keys have been added. You will need to replace "<eth_node_url>" with the Alchemy or Infura endpoint used for this test (should be located in your ~/gorc/config.toml file) and "<eth_private_key>" with the ethereum private key you are using to deploy the contract. For this test, you can use the signer key that was created for the orchestrator. The private key can be retrieved using the following command, and when you submit it, drop the 0x prefix:
 
 ```bash
+gorc --config ~/gorc/config.toml keys eth show signer --show-private-key
+
+```
+
+```bash
+cd ~
+mkdir contract_0.2.23
+cd contract_0.2.23
 wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/contract-deployer
 wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/Gravity.json
 chmod +x contract-deployer
 ./contract-deployer --eth-node "<eth_node_url>" --cosmos-node "localhost:26657" --eth-privkey <eth_private_key> --contract Gravity.json --test-mode false
+cd ~
+
 ```
 
 Take the resultant address of the deployed contract and edit your ~/gorc/config.toml file to set the contract address.
@@ -225,7 +236,7 @@ Part of the upgrade process will be wiping the Ethereum state as we migrate to a
 You will need to replace "<upgrade_height>" with the appropriate block height at which the upgrade will be required. First, we will consider how long the governance vote period will last and add a decent chunk of minutes as buffer time. Since we have manually set our vote periods to 10 minutes, we'll wait 15 minutes from voting start to trigger the upgrade. Watch the sommelier node logs to estimate how long each block takes to get committed and calculate how many blocks to wait. In this particular case we will likely observe roughly 6 second blocks, meaning 10 blocks per minute and thus adding 150 blocks to the current block height to determine the upgrade height.
 
 ```bash
-sommelier tx gov submit-proposal software-upgrade CabFranc --upgrade-height <upgrade_height> --deposit 100000stake --from foo --keyring-backend test --title CabFranc --description "foo" --chain-id zinfandel
+sommelier tx gov submit-proposal software-upgrade CabernetFranc --upgrade-height <upgrade_height> --deposit 100000stake --from foo --keyring-backend test --title CabernetFranc --description "foo" --chain-id zinfandel
 
 ```
 
@@ -240,11 +251,71 @@ sommelier tx gov vote 1 Yes --from foo --chain-id zinfandel -y --keyring-backend
 
 ## Upgrade the binaries
 
-Wait until the upgrade height after passing the proposal. The sommelier node should panic and require the CabFranc upgrade, which will be present in the updated binary. At this point, you should shut down the orchestrator.
+Wait until the upgrade height after passing the proposal. The sommelier node should panic and require the CabernetFranc upgrade, which will be present in the updated binary. At this point, you should shut down the orchestrator.
 
 ```bash
 sudo systemctl stop orchestrator
 
 ```
 
-## TODO(bolten): binary replacement, chain restart, new contract deployment, orchestrator restart
+Replace the binaries for `sommelier` and `gorc`. It's fine to do this with the sommelier node running, the current binary is already in memory.
+
+```bash
+cd ~
+mkdir sommelier_3.0.6_linux_amd64
+cd sommelier_3.0.6_linux_amd64
+wget https://github.com/PeggyJV/sommelier/releases/download/v3.0.6/sommelier_3.0.6_linux_amd64.tar.gz
+tar -xvf sommelier_3.0.6_linux_amd64.tar.gz
+sudo cp sommelier /usr/bin/sommelier
+cd ~
+
+```
+
+```bash
+cd ~
+mkdir gorc_0.3.4
+cd gorc_0.3.4
+wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.3.4/gorc
+chmod +x gorc
+sudo cp gorc /usr/bin
+cd ~
+
+```
+
+Restart the sommelier node and monitor logs to ensure the upgrade has applied cleanly and that blocks are being produced once each validator has upgraded.
+
+```bash
+sudo systemctl restart sommelier && journalctl -u sommelier -f
+
+```
+
+## Deploy the upgraded Gravity contract
+
+Download and deploy the updated Gravity contract:
+
+```bash
+cd ~
+mkdir contract_0.3.4
+cd contract_0.3.4
+wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.3.4/contract-deployer
+wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.3.4/Gravity.json
+chmod +x contract-deployer
+./contract-deployer --eth-node "<eth_node_url>" --cosmos-node "localhost:26657" --eth-privkey <eth_private_key> --contract Gravity.json --test-mode false
+cd ~
+
+```
+
+Take the resultant address of the deployed contract and edit your ~/gorc/config.toml file to set the contract address.
+
+Start the orchestrator:
+
+```bash
+sudo systemctl start orchestrator && journalctl -u orchestrator -f
+
+```
+
+Watch the logs to ensure that the orchestrator is functioning correctly with the new chain and freshly deployed contract.
+
+## Further testing
+
+If all steps above proceeded without error, we have updated the chain and Gravity contract. Feel free to test the bridge by deploying an ERC20 or sending funds back and forth across Cosmos and Ethereum. Testing logic calls and cellars is outside the scope of this particular test.
