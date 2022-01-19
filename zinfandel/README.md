@@ -13,7 +13,6 @@ Open Ports:
 - 26657 (tendermint rpc)
 - 9090  (tendermint grpc)
 - 1317  (cosmos-sdk api)
-- 30303 (geth p2p)
 
 ## Dependencies
 

@@ -30,7 +30,7 @@ WantedBy=multi-user.target
 
 ```
 [Unit]
-Description=Sommelier Node
+Description=Gravity Bridge Orchestrator
 After=network.target
 
 [Service]
@@ -39,26 +39,6 @@ User=ubuntu
 Environment="RUST_LOG=INFO"
 WorkingDirectory=/home/ubuntu
 ExecStart=/usr/bin/gorc --config /home/ubuntu/gorc/config.toml orchestrator start --cosmos-key orchestrator --ethereum-key signer
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=4096
-
-[Install]
-WantedBy=multi-user.target
-```
-
-## `/etc/systemd/system/geth.service`
-
-```
-[Unit]
-Description=Sommelier Node
-After=network.target
-
-[Service]
-Type=simple
-User=ubuntu
-WorkingDirectory=/home/ubuntu
-ExecStart=/usr/bin/geth --syncmode "light" --goerli --http --cache 16
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=4096
