@@ -141,11 +141,10 @@ To turn on the API, open `~/.sommelier/config/app.toml` in an editor and make th
 # Enable defines if the API server should be enabled.
 enable = true
 ```
-## TODO(bolten): everything below this point is mostly copied from the last testnet and much of it is likely incorrect, but left here as scaffolding
 
 ## Next steps - Half way point
 
-Now we wait for all testnet participants to submit their files. Once they are submitted we can continue with the network bootstrap process. At this point the `batch` and `il` contracts can be deployed to Goreli. The resultant hashes should be filled in below:
+Now we wait for all testnet participants to submit their files. Once they are submitted we can continue with the network bootstrap process.
 
 ## Genesis Mutations
 
@@ -193,63 +192,28 @@ sudo systemctl start sommelier && journalctl -u sommelier -f
 
 At this point the network will begin to come online. The remaining steps are to be completed once the network is online.
 
-## Delegate key to oracle feeder and start oracle feeder
+## Deploy Gravity contract
+
+This step only needs to be performed by one participant and should only be run once all the eth keys have been added.
 
 ```bash
-sommelier tx oracle delegate-feeder $(oracle-feeder keys show feeder) --from validator --chain-id zinfandel --keyring-backend test
-sudo systemctl start oracle-feeder && journalctl -u oracle-feeder -f
-# You should see logging for each cosmos block then a set of transactions every 5th block
-# Errors will kill this process and set it into a crash backoff loop
-```
-
-## Delegate keys for orchestrator
-
-```bash
-register_delegate_keys
-    --validator-phrase=""
-    --ethereum-key=""
-    --cosmos-phrase=""
-    --cosmos-rpc="http://localhost:26657"
-    --fees="stake"
-```
-
-> TODO: make this work
-```bash
-sommelier tx peggy set-orchestrator-address \
-    $(sommelier keys show validator -a --keyring-backend test --bech val) \
-    $(oracle-feeder key show feeder) \
-    $(sommelier eth-keys show 1) \
-    # TODO: The below flags are not present on the sommelier binary currently
-    --from validator \
-    --chain-id zinfandel \
-    --fees 25000stake \
-    --keyring-backend test -y
-```
-
-At this point we need to wait for all genesis participants to submit their eth keys then the peggy contract can be deployed.
-
-## Deploy Peggy
-
-This step only needs to be performed by one participant and should only be run once all the eth keys have been added
-
-```bash
-wget https://github.com/althea-net/cosmos-gravity-bridge/releases/download/v0.0.20/contract-deployer
-wget https://github.com/althea-net/cosmos-gravity-bridge/releases/download/v0.0.20/Peggy.json
+wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/contract-deployer
+wget https://github.com/PeggyJV/gravity-bridge/releases/download/v0.2.23/Gravity.json
 chmod +x contract-deployer
-./contract-deployer --cosmos-node="http://localhost:26657" --eth-node="http://localhost:8545" --eth-privkey="{private-key-with-goreli-funds}" --contract=Peggy.json --test-mode=false
+./contract-deployer --eth-node "<eth_node_url>" --cosmos-node "localhost:26657" --eth-privkey <eth_private_key> --contract Gravity.json --test-mode false
 ```
 
-This results in a hash which is required for all validators to start their orchestrators.
-
-> HASH: `"TBD"`
+Take the resultant address of the deployed contract and edit your ~/gorc/config.toml file to set the contract address.
 
 ## Start orchestrators
 
-If you are using the `systemd` setup described here be sure to `sudo systemctl daemon-reload` after editing `/etc/systemd/system/orchestrator.service` to include the peggy contract address and your private keys.
+If you are using the `systemd` setup described here be sure to `sudo systemctl daemon-reload` after editing `/etc/systemd/system/orchestrator.service` to include the Gravity contract address.
 
 ```bash
 sudo systemctl start orchestrator && journalctl -u orchestrator -f
-# You should see the orchestrator begin to emit logs
+
 ```
 
-## WE ARE ALL UP
+You should see the orchestrator begin to emit logs
+
+## TODO(bolten): governance proposal and upgrade process

@@ -9,7 +9,7 @@ mkdir -p /home/ubuntu/gorc/keystore
 
 ## config.toml
 
-Place this file at `/home/ubuntu/gorc/config.toml`. We will have to update this config with the Gravity contract address once it has been deployed.
+Place this file at `/home/ubuntu/gorc/config.toml`. We will have to update this config with the Gravity contract address once it has been deployed. You will need to replace "<eth_node_url>" with a valid Alchemy or Infura endpoint for Goerli.
 
 ```
 keystore = "/home/ubuntu/gorc/keystore/"
@@ -20,7 +20,7 @@ fees_denom = "usomm"
 
 [ethereum]
 key_derivation_path = "m/44'/60'/0'/0/0"
-rpc = "http://localhost:8545"
+rpc = "<eth_node_url>"
 
 [cosmos]
 key_derivation_path = "m/44'/118'/0'/0/0"
