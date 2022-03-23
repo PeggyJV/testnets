@@ -173,7 +173,7 @@ gorc --config ~/gorc/config.toml keys eth add signer
 We'll be using the generated signature when we run gentx in the next step.
 
 ```bash
-echo $(gorc --config ~/gorc/config.toml sign-delegate-keys signer $(sommelier keys --keyring-backend test show validator --bech val -a) 0)
+echo $(gorc --config ~/gorc/config.toml sign-delegate-keys -a signer -a $(sommelier keys --keyring-backend test show validator --bech val -a) -a 0)
 
 ```
 
