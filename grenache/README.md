@@ -373,7 +373,7 @@ Replace the binary for `sommelier`. It's fine to do this with the sommelier node
 cd ~
 mkdir sommelier_4.0.0_linux_amd64
 cd sommelier_4.0.0_linux_amd64
-wget https://github.com/PeggyJV/sommelier/releases/download/v3.0.6/sommelier_4.0.0_linux_amd64.tar.gz
+wget https://github.com/PeggyJV/sommelier/releases/download/v4.0.0/sommelier_4.0.0_linux_amd64.tar.gz
 tar -xvf sommelier_4.0.0_linux_amd64.tar.gz
 sudo cp sommelier /usr/bin/sommelier
 cd ~
