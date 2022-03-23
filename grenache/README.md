@@ -1,6 +1,8 @@
 # Grenache testnet
 
-The following describes what is required for a single VM that will act as a validator in the `sommelier` grenache testnet. This testnet will involve upgrading from `sommelier` 3.1.1 to 4.0.0, so we will first be installing the earlier binary.
+The following describes what is required for a single VM that will act as a validator in the `sommelier` grenache testnet. This testnet will involve upgrading from `sommelier` 3.1.1 to 4.0.0, so we will first be installing the earlier binary. We will later be replacing our usage of `gorc` with `steward` as this is the same transition the validators will be going through.
+
+Use a recent Ubuntu image when creating your VM.
 
 ## VM Requirements
 
@@ -53,10 +55,6 @@ cd ~
 
 ```
 
-#### `steward`
-
-TODO(bolten): steward binary instructions here
-
 ### Set up configs
 
 #### `gorc`
@@ -87,10 +85,6 @@ grpc = "http://localhost:9090"
 prefix = "somm"
 
 ```
-
-#### `steward`
-
-TODO(bolten): steward config here
 
 ### Set up `systemd` unit files
 
@@ -140,10 +134,6 @@ LimitNOFILE=4096
 [Install]
 WantedBy=multi-user.target
 ```
-
-#### `/etc/systemd/system/steward.service`
-
-TODO(bolten): steward service definition here
 
 ## Key generation and `gentx` signature
 
@@ -258,13 +248,9 @@ To turn on the API, open `~/.sommelier/config/app.toml` in an editor and make th
 enable = true
 ```
 
-### Set fees to 0usomm
+## Next steps - stop here
 
-TODO(bolten): fill this in
-
-## Next steps - half-way point
-
-Now we wait for all testnet participants to submit their files. Once they are submitted we can continue with the network bootstrap process.
+Now we wait for all testnet participants to submit their files. Once they are submitted we can continue with the network bootstrap process. Do not proceed further if the network has not been started yet.
 
 ## Genesis Mutations
 
@@ -410,7 +396,7 @@ sudo systemctl start orchestrator && journalctl -u orchestrator -f
 
 ## Deploy the test cellar
 
-## Start steward
+## Install and start Steward
 
 ## Testing items
 
@@ -420,10 +406,12 @@ sudo systemctl start orchestrator && journalctl -u orchestrator -f
 
 ### Send Ethereum tokens to Cosmos
 
-### Send Ethereum tokens to the fee distribution module account
+### Send Ethereum tokens to the cellar fees module account
 
 ### Cellar addition governance proposal
 
 ### Submit a cork via steward
 
 ### Cellar removal governance proposal
+
+### Cellar shutdown via scheduled cork
