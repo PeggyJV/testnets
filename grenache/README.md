@@ -35,7 +35,7 @@ sudo apt install wget build-essential git nano jq make snapd -y
 cd ~
 mkdir sommelier_3.1.1_linux_amd64
 cd sommelier_3.1.1_linux_amd64
-wget https://github.com/PeggyJV/sommelier/releases/download/v2.0.0/sommelier_3.1.1_linux_amd64.tar.gz
+wget https://github.com/PeggyJV/sommelier/releases/download/v3.1.1/sommelier_3.1.1_linux_amd64.tar.gz
 tar -xvf sommelier_3.1.1_linux_amd64.tar.gz
 sudo cp sommelier /usr/bin/sommelier
 cd ~
