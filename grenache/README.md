@@ -261,14 +261,14 @@ The following changes need to be made to a generated genesis file for sommelier.
 - [x] Add denom metadata for `usomm`
 
     ```bash
-    jq '.app_state.bank.denom_metadata += [{"base": "usomm", display: "usomm", "description": "A staking test token", "denom_units": [{"denom": "usomm", "exponent": 6}]}]' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    jq '.app_state.bank.denom_metadata += [{"base": "usomm", "display": "usomm", "description": "A staking test token", "denom_units": [{"denom": "usomm", "exponent": 6}]}]' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
 - [x] Add chain id for Goerli testnet
 
     ```bash
-    jq '.app_state.peggy.params.bridge_chain_id = "5"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    jq '.app_state.gravity.params.bridge_chain_id = "5"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
