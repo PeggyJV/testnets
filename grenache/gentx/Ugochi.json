@@ -32,10 +32,10 @@
                 "validator_address": "sommvaloper1te5l2m7vcttph49crmtldmhxysscqnpy26g9rk",
                 "orchestrator_address": "somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6",
                 "ethereum_address": "0x5d5A6DfCEcc822FdeD4493A449C1e2Da7F08Bd09",
-                "eth_signature": "4CXC8z8VqI77zkDzwX6+7Y8tv2d6EodyM2AzuUaYkJJkIoZMvufQ6Oq57060L3kCEob63yHbo4mNxJbQ4Oyuqxs="
+                "eth_signature": "K9ejVmWT0Ileljl31EBSCGU/CCswpbZcVbIg0dp8s5ln0YJoTXqXY5RM7YTzPl7DB9bKbllUbGnATXoP9JZs3Rs="
             }
         ],
-        "memo": "",
+        "memo": "dc62b101b65c868d930fa18345bdb4870dc14e98@192.168.43.13:26656",
         "timeout_height": "0",
         "extension_options": [],
         "non_critical_extension_options": []
@@ -63,6 +63,6 @@
         }
     },
     "signatures": [
-        "cQmBiCACVsir+M31u7WXX8CdD1HKOdXKpw9JLNO/t1ANumeUlDnAeMQAKhjv6Gbe6v21wx6tcNoFZ2HsX/wzbw=="
+        "CfnC9Hdb47etrKZdbNRzauki9EOCRUypDs8/M5W4Cc5xMJ31FVCyb3MWqErpTTdxbFpdWvZNrzxIfVrdCqTShQ=="
     ]
 }
