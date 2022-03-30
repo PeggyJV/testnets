@@ -179,11 +179,11 @@ echo $(gorc --config ~/gorc/config.toml sign-delegate-keys -a signer -a $(sommel
 
 ### Generate the gentx file
 
-These commands will output a file path pointing to your gentx.json file. Replace <delegate_key_signature> with the value you just generated in the last command. If that value does not have a 0x prepended in front of it, you will need to add it.
+These commands will output a file path pointing to your gentx.json file. Replace <delegate_key_signature> with the value you just generated in the last command. If that value does not have a 0x prepended in front of it, you will need to add it. You will also need to replace <node_id> with the output of `sommelier tendermint show-node-id` and <ip_address> with the public-facing IP address of your server.
 
 ```bash
 sommelier add-genesis-account $(sommelier keys show validator -a --keyring-backend test) 10000000000usomm
-sommelier gentx validator 1000000000usomm $(gorc --config ~/gorc/config.toml keys eth show signer) $(gorc --config ~/gorc/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2) <delegate_key_signature> --chain-id grenache --keyring-backend test
+sommelier gentx validator 1000000000usomm $(gorc --config ~/gorc/config.toml keys eth show signer) $(gorc --config ~/gorc/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2) <delegate_key_signature> --chain-id grenache --keyring-backend test --note "<node_id>@<ip_address>:26656"
 
 ```
 
