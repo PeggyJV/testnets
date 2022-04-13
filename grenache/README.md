@@ -84,6 +84,10 @@ key_derivation_path = "m/44'/118'/0'/0/0"
 grpc = "http://localhost:9090"
 prefix = "somm"
 
+[cosmos.gas_price]
+amount = 0.0
+denom = "usomm"
+
 ```
 
 ### Set up `systemd` unit files
