@@ -1,0 +1,68 @@
+{
+    "body": {
+        "messages": [
+            {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                    "moniker": "moniker",
+                    "identity": "",
+                    "website": "",
+                    "security_contact": "",
+                    "details": ""
+                },
+                "commission": {
+                    "rate": "0.100000000000000000",
+                    "max_rate": "0.200000000000000000",
+                    "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "somm1lhj77gx9cqht2z2uqm4y9gghyqgrejdnplpugf",
+                "validator_address": "sommvaloper1lhj77gx9cqht2z2uqm4y9gghyqgrejdn5p0p0x",
+                "pubkey": {
+                    "@type": "/cosmos.crypto.ed25519.PubKey",
+                    "key": "kCzaH+Gt0YSBSFTPxM4cZg1u1vWgpdEkEBfpukqNO1A="
+                },
+                "value": {
+                    "denom": "usomm",
+                    "amount": "1000000000"
+                }
+            },
+            {
+                "@type": "/gravity.v1.MsgDelegateKeys",
+                "validator_address": "sommvaloper1lhj77gx9cqht2z2uqm4y9gghyqgrejdn5p0p0x",
+                "orchestrator_address": "somm1f2faqf9g3ng373reagj795uqvylp5dey44ql75",
+                "ethereum_address": "0x7B17557E5546EF32dB236aCA012C932c74F3719b",
+                "eth_signature": "NvWDsQ8t/1c0ZHCPskyFBL+WrCbOW/tjIPE5iyUJah0SthjScKyOW9BSL9tbZh8aRk36hK3KwM65Aknkk+KnXRw="
+            }
+        ],
+        "memo": "d6207eb3898e9e1f59699cc0acec64bf15b80d37@35.224.109.187:26656",
+        "timeout_height": "0",
+        "extension_options": [],
+        "non_critical_extension_options": []
+    },
+    "auth_info": {
+        "signer_infos": [
+            {
+                "public_key": {
+                    "@type": "/cosmos.crypto.secp256k1.PubKey",
+                    "key": "AkPI2uRNuQr4o4mDo3xnT5BnItwcwd/UELmAOLpxKTEb"
+                },
+                "mode_info": {
+                    "single": {
+                        "mode": "SIGN_MODE_DIRECT"
+                    }
+                },
+                "sequence": "0"
+            }
+        ],
+        "fee": {
+            "amount": [],
+            "gas_limit": "200000",
+            "payer": "",
+            "granter": ""
+        }
+    },
+    "signatures": [
+        "p7eujY5L97g3wyD7JGTj5q755WjrVQtAcaT24+apoMFX6U8jnuHTgF3LjaczMayXoLW3zISq8wIVc03riy03qA=="
+    ]
+}
