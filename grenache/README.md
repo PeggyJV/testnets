@@ -388,10 +388,8 @@ You should see the orchestrator begin to emit logs.
 
 You will need to replace "<upgrade_height>" with the appropriate block height at which the upgrade will be required. First, we will consider how long the governance vote period will last and add a decent chunk of minutes as buffer time. Since we have manually set our vote periods to 10 minutes, we'll wait 15 minutes from voting start to trigger the upgrade. Watch the sommelier node logs to estimate how long each block takes to get committed and calculate how many blocks to wait. In this particular case we will likely observe roughly 6 second blocks, meaning 10 blocks per minute and thus adding 150 blocks to the current block height to determine the upgrade height.
 
-TODO(bolten): decide upgrade title
-
 ```bash
-sommelier tx gov submit-proposal software-upgrade <upgrade_title> --upgrade-height <upgrade_height> --deposit 100000usomm --from <proposal_submitter> --keyring-backend test --title <upgrade_title> --description <upgrade_description> --chain-id grenache
+sommelier tx gov submit-proposal software-upgrade v4 --upgrade-height <upgrade_height> --deposit 100000usomm --from <proposal_submitter> --keyring-backend test --title v4 --description "Testing v4 upgrade" --chain-id grenache
 
 ```
 
@@ -442,22 +440,22 @@ sudo systemctl start orchestrator && journalctl -u orchestrator -f
 
 ## Deploy the test cellar
 
-## Install and start Steward
+## Start Steward
 
 ## Testing items
 
-### Deploy an ERC-20
+### Bridge test ERC20 token #2 to Cosmos
 
-### Send Cosmos tokens to Ethereum
-
-### Send Ethereum tokens to Cosmos
-
-### Send Ethereum tokens to the cellar fees module account
+### Bridge a Cosmos-originated token to Ethereum
 
 ### Cellar addition governance proposal
 
 ### Submit a cork via steward
 
 ### Cellar removal governance proposal
+
+### Fund an Ethereum address with a community pool proposal
+
+### Send Ethereum tokens to the cellar fees module account
 
 ### Cellar shutdown via scheduled cork
