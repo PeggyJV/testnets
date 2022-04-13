@@ -271,6 +271,9 @@ The following changes need to be made to a generated genesis file for sommelier.
   sommelier add–genesis-account somm1lrzawpfhxjy4lj26wk566r3pdqcuu5pfp4xy4e 1000000000000usomm
   sommelier add–genesis-account somm1te5l2m7vcttph49crmtldmhxysscqnpylyxcye 1000000000000usomm
   sommelier add–genesis-account somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6 1000000000000usomm
+  sommelier add–genesis-account somm1lhj77gx9cqht2z2uqm4y9gghyqgrejdnplpugf 1000000000000usomm
+  sommelier add–genesis-account somm1f2faqf9g3ng373reagj795uqvylp5dey44ql75 1000000000000usomm
+
   ```
 
 - [x] Add denom metadata for `usomm`
