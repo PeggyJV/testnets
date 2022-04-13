@@ -411,16 +411,41 @@ sudo systemctl stop orchestrator
 
 ```
 
-Replace the binary for `sommelier`. It's fine to do this with the sommelier node running, the current binary is already in memory.
+### Set up Go
+
+```bash
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install wget build-essential git nano jq make snapd -y
+sudo snap install go --classic
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> ~/.profile
+echo "export GOPATH=$HOME/go" >> ~/.profile
+echo "export GOBIN=$HOME/go/bin" >> ~/.profile
+source ~/.profile
+
+```
+
+### Set up Rust
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
+```
+
+### Clone the repos
 
 ```bash
 cd ~
-mkdir sommelier_4.0.0_linux_amd64
-cd sommelier_4.0.0_linux_amd64
-wget https://github.com/PeggyJV/sommelier/releases/download/v4.0.0/sommelier_4.0.0_linux_amd64.tar.gz
-tar -xvf sommelier_4.0.0_linux_amd64.tar.gz
-sudo cp sommelier /usr/bin/sommelier
-cd ~
+git clone https://github.com/PeggyJV/sommelier.git
+git clone https://github.com/PeggyJV/steward.git
+
+```
+
+Replace the binary for `sommelier`. It's fine to do this with the sommelier node running, the current binary is already in memory.
+
+```bash
+echo todo
 
 ```
 
@@ -455,6 +480,15 @@ sudo systemctl start orchestrator && journalctl -u orchestrator -f
 ### Cellar removal governance proposal
 
 ### Fund an Ethereum address with a community pool proposal
+
+#### Fund the community pool
+
+```bash
+sommelier tx distribution fund-community-pool 10000000usomm
+
+```
+
+#### Create governance proposal for community pool spend
 
 ### Send Ethereum tokens to the cellar fees module account
 
