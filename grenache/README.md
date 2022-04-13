@@ -287,7 +287,32 @@ The following changes need to be made to a generated genesis file for sommelier.
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
-- [x] Shorten governance voting window based on block timings (target 15 minutes)
+- [x] Shorten governance voting window to 10 minutes
+
+    ```bash
+    jq '.app_state.gov.voting_params.voting_period = "600s"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
+    ```
+
+- [x] Shorten unbonding time to 5 minutes
+
+    ```bash
+    jq '.app_state.staking.params.unbonding_time = "300s"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
+    ```
+
+- [x] Replace references to "stake" with "usomm"
+
+    ```bash
+    jq '.app_state.crisis.constant_fee.denom = "usomm"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
+    jq '.app_state.gov.deposit_params.min_deposit[0].denom = "usomm"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
+    jq '.app_state.mint.params.mint_denom = "usomm"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
+    jq '.app_state.staking.params.bond_denom = "usomm"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
+    ```
 
 ## Collect gentxs and genesis hash
 
