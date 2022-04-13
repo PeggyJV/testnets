@@ -233,6 +233,10 @@ cat <gentx_file_path> | jq
 
 Before logging out of your machine, now is a great time to prepare the configuration file for `sommelier`.
 
+### Set minimum gas prices
+
+The first config entry should be for minimum-gas-prices, which should be set to "0usomm".
+
 ### Enable the API
 
 To turn on the API, open `~/.sommelier/config/app.toml` in an editor and make the following change to enable the API:
@@ -257,11 +261,22 @@ Now we wait for all testnet participants to submit their files. Once they are su
 The following changes need to be made to a generated genesis file for sommelier.
 
 - [x] Add funds to each cosmos address in the `./grenache/addresses/` folder
-  - [x] `sommelier add–genesis-account {address} 1000000000000usomm`
+
+  ```bash
+  sommelier add–genesis-account somm15axnckxz3s5vnl45ry6j2t83m4xches2z9ekce 1000000000000usomm
+  sommelier add–genesis-account somm1yzstxjv7ge5yalmdgt9k3uruxf4va42nkjc3en 1000000000000usomm
+  sommelier add–genesis-account somm1dwk34knwlywutcc6apwz7kvp5gfrh8d8zmpa7e 1000000000000usomm
+  sommelier add–genesis-account somm1tnpypu77dedhxpklt074pf63sj385anecws660 1000000000000usomm
+  sommelier add–genesis-account somm1l70s9uaqqrntuqj7yjss5cc4fwdhms4nr8az9n 1000000000000usomm
+  sommelier add–genesis-account somm1lrzawpfhxjy4lj26wk566r3pdqcuu5pfp4xy4e 1000000000000usomm
+  sommelier add–genesis-account somm1te5l2m7vcttph49crmtldmhxysscqnpylyxcye 1000000000000usomm
+  sommelier add–genesis-account somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6 1000000000000usomm
+  ```
+
 - [x] Add denom metadata for `usomm`
 
     ```bash
-    jq '.app_state.bank.denom_metadata += [{"base": "usomm", "display": "usomm", "description": "A staking test token", "denom_units": [{"denom": "usomm", "exponent": 6}]}]' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
+    jq '.app_state.bank.denom_metadata += [{"base": "usomm", "display": "usomm", "description": "A staking test token", "name": "Somm", "symbol": "SOMM", "denom_units": [{"denom": "usomm", "exponent": 0}]}]' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
 
@@ -271,6 +286,8 @@ The following changes need to be made to a generated genesis file for sommelier.
     jq '.app_state.gravity.params.bridge_chain_id = "5"' ~/.sommelier/config/genesis.json > ~/.sommelier/config/edited-genesis.json
     mv ~/.sommelier/config/edited-genesis.json ~/.sommelier/config/genesis.json
     ```
+
+- [x] Shorten governance voting window based on block timings (target 15 minutes)
 
 ## Collect gentxs and genesis hash
 
@@ -289,11 +306,9 @@ Expected hash: TODO(bolten): fill this in once genesis is created
 Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./grenache/addresses/` files. A string will be provided:
 
 ```toml
-persistent_peers = "1d86bf16f5709ab8afcd2e0501619ed3b0805cac@35.197.62.120:26656,2141ae992abc58fb4d88ce2b743e9283abfb4209@147.182.229.248:26656,f8130b0f831faac68b948adf56ce09e34825d629@34.71.31.2:26656,b352955a2343e7e409030666a9cdd036b7fe3721@35.226.109.154:26656,50ab8b874ec4de485115aa922793a0e83729348d@35.226.103.234:26656"
+persistent_peers = "a49554156f5cc3a7b57482c5a38dc374293004fa@34.125.217.119:26656,aa464baad9f0228e63025bedd4e5c00f16419522@164.92.91.176:26656,048fcedf274f1382780eb658ecb57ba475d4e2ca@3.84.45.235:26656,b599397a5644357f3179d358d98bf943fbd5bf44@164.92.131.147:26656"
 
 ```
-
-TODO(bolten): update this with the persistent peer list when it is generated
 
 ## Start validator
 
@@ -337,6 +352,12 @@ sudo systemctl start orchestrator && journalctl -u orchestrator -f
 ```
 
 You should see the orchestrator begin to emit logs.
+
+## Deploy the test ERC20s
+
+## Bridge test ERC20 tokens to Cosmos
+
+## Bridge a Cosmos-originated token to Ethereum
 
 ## Submit the governance proposal
 
