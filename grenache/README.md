@@ -263,16 +263,16 @@ The following changes need to be made to a generated genesis file for sommelier.
 - [x] Add funds to each cosmos address in the `./grenache/addresses/` folder
 
   ```bash
-  sommelier add–genesis-account somm15axnckxz3s5vnl45ry6j2t83m4xches2z9ekce 1000000000000usomm
-  sommelier add–genesis-account somm1yzstxjv7ge5yalmdgt9k3uruxf4va42nkjc3en 1000000000000usomm
-  sommelier add–genesis-account somm1dwk34knwlywutcc6apwz7kvp5gfrh8d8zmpa7e 1000000000000usomm
-  sommelier add–genesis-account somm1tnpypu77dedhxpklt074pf63sj385anecws660 1000000000000usomm
-  sommelier add–genesis-account somm1l70s9uaqqrntuqj7yjss5cc4fwdhms4nr8az9n 1000000000000usomm
-  sommelier add–genesis-account somm1lrzawpfhxjy4lj26wk566r3pdqcuu5pfp4xy4e 1000000000000usomm
-  sommelier add–genesis-account somm1te5l2m7vcttph49crmtldmhxysscqnpylyxcye 1000000000000usomm
-  sommelier add–genesis-account somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6 1000000000000usomm
-  sommelier add–genesis-account somm1lhj77gx9cqht2z2uqm4y9gghyqgrejdnplpugf 1000000000000usomm
-  sommelier add–genesis-account somm1f2faqf9g3ng373reagj795uqvylp5dey44ql75 1000000000000usomm
+  sommelier add-genesis-account somm15axnckxz3s5vnl45ry6j2t83m4xches2z9ekce 1000000000000usomm
+  sommelier add-genesis-account somm1yzstxjv7ge5yalmdgt9k3uruxf4va42nkjc3en 1000000000000usomm
+  sommelier add-genesis-account somm1dwk34knwlywutcc6apwz7kvp5gfrh8d8zmpa7e 1000000000000usomm
+  sommelier add-genesis-account somm1tnpypu77dedhxpklt074pf63sj385anecws660 1000000000000usomm
+  sommelier add-genesis-account somm1l70s9uaqqrntuqj7yjss5cc4fwdhms4nr8az9n 1000000000000usomm
+  sommelier add-genesis-account somm1lrzawpfhxjy4lj26wk566r3pdqcuu5pfp4xy4e 1000000000000usomm
+  sommelier add-genesis-account somm1te5l2m7vcttph49crmtldmhxysscqnpylyxcye 1000000000000usomm
+  sommelier add-genesis-account somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6 1000000000000usomm
+  sommelier add-genesis-account somm1lhj77gx9cqht2z2uqm4y9gghyqgrejdnplpugf 1000000000000usomm
+  sommelier add-genesis-account somm1f2faqf9g3ng373reagj795uqvylp5dey44ql75 1000000000000usomm
 
   ```
 
@@ -327,7 +327,7 @@ jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
 
 ```
 
-Expected hash: TODO(bolten): fill this in once genesis is created
+Expected hash: f17d1f1bdab4a005736e0c3913aa1dd3e69c25c020ca24954a654f5af7cfbd8d
 
 ## Configure persistent peers
 
