@@ -638,7 +638,7 @@
         "signed_signer_set_txs_window": "10000",
         "signed_batches_window": "10000",
         "ethereum_signatures_window": "10000",
-        "target_eth_tx_timeout": "43200000",
+        "target_eth_tx_timeout": "3600000",
         "average_block_time": "5000",
         "average_ethereum_block_time": "15000",
         "slash_fraction_signer_set_tx": "0.001000000000000000",

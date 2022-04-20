@@ -331,7 +331,7 @@ jq -S -c -M '' ~/.sommelier/config/genesis.json | shasum -a 256
 
 ```
 
-Expected hash: `e4bfde77e2bff790f7917c25d753aa630bd0518c1f68fe4a8cf662194db60663`
+Expected hash: `b709cfb67f64f1d08fe2d2d71d2c10d0d2fe6172256d065e015a767073a39ae2`
 
 ## Configure persistent peers
 
