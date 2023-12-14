@@ -4,3 +4,4 @@ Instructions and validator information for running sommelier testnets. Each test
 
 - 2021-03 - [merlot testnet](./merlot/)
 - 2022-01 - [zinfandel testnet](./zinfandel)
+- 2022-03 - [grenache testnet](./grenache)
