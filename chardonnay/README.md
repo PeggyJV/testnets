@@ -1,6 +1,6 @@
 # Chardonney testnet
 
-The following describes what is required for a single VM that will act as a validator in the `sommelier` chardonney testnet. This testnet will involve upgrading from `sommelier` 6.0.0 to _, so we will first be installing the earlier binary. We will later be replacing our usage of `steward` with `steward` as this is the same transition the validators will be going through.
+The following describes what is required for a single VM that will act as a validator in the `sommelier` chardonnay testnet. This testnet will involve upgrading from `sommelier` 6.0.0 to _, so we will first be installing the earlier binary. We will later be replacing our usage of `steward` with `steward` as this is the same transition the validators will be going through.
 
 Use a recent Ubuntu image when creating your VM.
 
@@ -159,14 +159,14 @@ In this step you will generate your keys that will be used for:
 Then you will:
 
 1. Use those keys to sign a `gentx`
-2. Gather addresses from each key and some other information to generate a `chardonney/addresses/{name}.json` file
+2. Gather addresses from each key and some other information to generate a `chardonnay/addresses/{name}.json` file
 
 ### Initialize the config file for sommelier
 
 > NOTE: this also generates `~/.sommelier/config/priv_validator.json` that is mission critical
 
 ```bash
-sommelier init moniker --chain-id chardonney
+sommelier init moniker --chain-id chardonnay
 
 ```
 
@@ -196,7 +196,7 @@ These commands will output a file path pointing to your gentx.json file. Replace
 
 ```bash
 sommelier add-genesis-account $(sommelier keys show validator -a --keyring-backend test) 10000000000usomm
-sommelier gentx validator 1000000000usomm $(steward --config ~/steward/config.toml keys eth show signer) $(steward --config ~/steward/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2) <delegate_key_signature> --chain-id chardonney --keyring-backend test --note "<node_id>@<ip_address>:26656"
+sommelier gentx validator 1000000000usomm $(steward --config ~/steward/config.toml keys eth show signer) $(steward --config ~/steward/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2) <delegate_key_signature> --chain-id chardonnay --keyring-backend test --note "<node_id>@<ip_address>:26656"
 
 ```
 
@@ -204,7 +204,7 @@ sommelier gentx validator 1000000000usomm $(steward --config ~/steward/config.to
 
 Make a PR to this repo with the following files:
 
-### `./chardonney/addresses/{name}.json`
+### `./chardonnay/addresses/{name}.json`
 
 Run the following set of commands to print out your validator address, orchestrator address, ethereum address, node ID, and network information to retrieve your IP address.
 
@@ -219,7 +219,7 @@ hostname -I | cut -d " " -f1
 
 If the last command doesn't give you a publicly routable IP, try running it without the pipe to `cut` and pick the correct IP address. If you are using a hosting provider with a different external IP address than the one reported by your machine, you will need to use that for your addresses file.
 
-Fill out `./chardonney/addresses/{name}.json` with the following schema using the data we just printed above:
+Fill out `./chardonnay/addresses/{name}.json` with the following schema using the data we just printed above:
 
 ```json
 {
@@ -233,7 +233,7 @@ Fill out `./chardonney/addresses/{name}.json` with the following schema using th
 }
 ```
 
-### `./chardonney/gentx/{name}.json`
+### `./chardonnay/gentx/{name}.json`
 
 This should contain the json from your `gentx` file. The output will be compact, you can prettify it by running:
 
@@ -273,7 +273,7 @@ Now we wait for all testnet participants to submit their files. Once they are su
 
 The following changes need to be made to a generated genesis file for sommelier.
 
-- [x] Add funds to each cosmos address in the `./chardonney/addresses/` folder
+- [x] Add funds to each cosmos address in the `./chardonnay/addresses/` folder
 
   ```bash
   sommelier add-genesis-account somm15axnckxz3s5vnl45ry6j2t83m4xches2z9ekce 1000000000000usomm
@@ -332,7 +332,7 @@ The following changes need to be made to a generated genesis file for sommelier.
 
 ## Collect gentxs and genesis hash
 
-Copy all the `./chardonney/gentx/` files into `~/.sommelier/config/gentx/` and run the following:
+Copy all the `./chardonnay/gentx/` files into `~/.sommelier/config/gentx/` and run the following:
 
 ```bash
 sommelier collect-gentxs
@@ -344,7 +344,7 @@ Expected hash: `b709cfb67f64f1d08fe2d2d71d2c10d0d2fe6172256d065e015a767073a39ae2
 
 ## Configure persistent peers
 
-Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./chardonney/addresses/` files. A string will be provided:
+Ensure that your `[p2p]persistent_peers` in `~/.sommelier/config/config.toml` contains all the nodes in the `./chardonnay/addresses/` files. A string will be provided:
 
 ```toml
 persistent_peers = "a49554156f5cc3a7b57482c5a38dc374293004fa@34.125.217.119:26656,aa464baad9f0228e63025bedd4e5c00f16419522@164.92.91.176:26656,048fcedf274f1382780eb658ecb57ba475d4e2ca@3.84.45.235:26656,b599397a5644357f3179d358d98bf943fbd5bf44@164.92.131.147:26656,d6207eb3898e9e1f59699cc0acec64bf15b80d37@34.133.226.219:26656"
@@ -405,7 +405,7 @@ You should see the orchestrator begin to emit logs.
 You will need to replace "<upgrade_height>" with the appropriate block height at which the upgrade will be required. First, we will consider how long the governance vote period will last and add a decent chunk of minutes as buffer time. Since we have manually set our vote periods to 10 minutes, we'll wait 15 minutes from voting start to trigger the upgrade. Watch the sommelier node logs to estimate how long each block takes to get committed and calculate how many blocks to wait. In this particular case we will likely observe roughly 6 second blocks, meaning 10 blocks per minute and thus adding 150 blocks to the current block height to determine the upgrade height.
 
 ```bash
-sommelier tx gov submit-proposal software-upgrade v4 --upgrade-height <upgrade_height> --deposit 100000usomm --from <proposal_submitter> --keyring-backend test --title v4 --description "Testing v4 upgrade" --chain-id chardonney
+sommelier tx gov submit-proposal software-upgrade v4 --upgrade-height <upgrade_height> --deposit 100000usomm --from <proposal_submitter> --keyring-backend test --title v4 --description "Testing v4 upgrade" --chain-id chardonnay
 
 ```
 
@@ -414,7 +414,7 @@ sommelier tx gov submit-proposal software-upgrade v4 --upgrade-height <upgrade_h
 Each validator must submit their vote so the upgrade proposal can proceed.
 
 ```bash
-sommelier tx gov vote 1 Yes --from foo --chain-id chardonney -y --keyring-backend test
+sommelier tx gov vote 1 Yes --from foo --chain-id chardonnay -y --keyring-backend test
 
 ```
 
