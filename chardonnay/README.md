@@ -91,12 +91,12 @@ amount = 0.0
 denom = "usomm"
 
 [cork]
-cache_refresh_period = 10,
-proposal_poll_period: 10,
-max_scheduling_retries: 5,
+cache_refresh_period = 10
+proposal_poll_period = 10
+max_scheduling_retries = 5
 
 [pubsub]
-cache_refresh_period = 10,
+cache_refresh_period = 10
 ```
 
 ### Set up `systemd` unit files
@@ -186,7 +186,7 @@ steward --config ~/steward/config.toml keys eth add signer
 We'll be using the generated signature when we run gentx in the next step.
 
 ```bash
-echo $(steward --config ~/steward/config.toml sign-delegate-keys -a signer -a $(sommelier keys --keyring-backend test show validator --bech val -a) -a 0)
+echo $(steward --config ~/steward/config.toml sign-delegate-keys signer $(sommelier keys --keyring-backend test show validator --bech val -a) 0)
 
 ```
 
@@ -196,7 +196,7 @@ These commands will output a file path pointing to your gentx.json file. Replace
 
 ```bash
 sommelier add-genesis-account $(sommelier keys show validator -a --keyring-backend test) 10000000000usomm
-sommelier gentx validator 1000000000usomm $(steward --config ~/steward/config.toml keys eth show signer) $(steward --config ~/steward/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2) <delegate_key_signature> --chain-id chardonnay --keyring-backend test --note "<node_id>@<ip_address>:26656"
+sommelier gentx validator 1000000000usomm $(steward --config ~/steward/config.toml keys eth show signer | cut -d$'\t' -f2) $(steward --config ~/steward/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2) <delegate_key_signature> --chain-id chardonnay --keyring-backend test --note "<node_id>@<ip_address>:26656"
 
 ```
 
@@ -211,7 +211,7 @@ Run the following set of commands to print out your validator address, orchestra
 ```bash
 sommelier keys show validator --keyring-backend test -a
 steward --config ~/steward/config.toml keys cosmos show orchestrator | cut -d$'\t' -f2
-steward --config ~/steward/config.toml keys eth show signer
+steward --config ~/steward/config.toml keys eth show signe | cut -d$'\t' -f2
 sommelier tendermint show-node-id
 hostname -I | cut -d " " -f1
 
