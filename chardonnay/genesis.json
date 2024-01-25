@@ -573,9 +573,9 @@
         "contract_source_hash": "",
         "bridge_ethereum_address": "0x5443448617D6872400daCdFe445fc19af41a501B",
         "bridge_chain_id": "5",
-        "signed_signer_set_txs_window": "10000",
-        "signed_batches_window": "10000",
-        "ethereum_signatures_window": "10000",
+        "signed_signer_set_txs_window": "1000000",
+        "signed_batches_window": "1000000",
+        "ethereum_signatures_window": "1000000",
         "target_eth_tx_timeout": "3600000",
         "average_block_time": "5000",
         "average_ethereum_block_time": "15000",
@@ -583,7 +583,7 @@
         "slash_fraction_batch": "0.001000000000000000",
         "slash_fraction_ethereum_signature": "0.001000000000000000",
         "slash_fraction_conflicting_ethereum_signature": "0.001000000000000000",
-        "unbond_slashing_signer_set_txs_window": "10000"
+        "unbond_slashing_signer_set_txs_window": "1000000"
       },
       "last_observed_event_nonce": "0",
       "outgoing_txs": [],
@@ -643,7 +643,7 @@
     "params": null,
     "slashing": {
       "params": {
-        "signed_blocks_window": "100",
+        "signed_blocks_window": "6000",
         "min_signed_per_window": "0.500000000000000000",
         "downtime_jail_duration": "600s",
         "slash_fraction_double_sign": "0.050000000000000000",
