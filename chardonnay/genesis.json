@@ -1,6 +1,6 @@
 {
-  "genesis_time": "2022-04-13T15:08:29.186026951Z",
-  "chain_id": "grenache",
+  "genesis_time": "2023-01-26T15:08:29.186026951Z",
+  "chain_id": "chardonnay",
   "initial_height": "1",
   "consensus_params": {
     "block": {
@@ -40,70 +40,28 @@
       "accounts": [
         {
           "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1dwk34knwlywutcc6apwz7kvp5gfrh8d8zmpa7e",
+          "address": "somm199sjfhaw3hempwzljw0lgwsm9kk6r8e5vhl2uw",
           "pub_key": null,
           "account_number": "0",
           "sequence": "0"
         },
         {
           "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm15axnckxz3s5vnl45ry6j2t83m4xches2z9ekce",
+          "address": "somm13hga6cqmv94xdjm5vka77hec94ygumsk4fd6jf",
           "pub_key": null,
           "account_number": "0",
           "sequence": "0"
         },
         {
           "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1yzstxjv7ge5yalmdgt9k3uruxf4va42nkjc3en",
+          "address": "somm10els3w56cn3gq8uwje45ws7u9c5mqfgjngrm3f",
           "pub_key": null,
           "account_number": "0",
           "sequence": "0"
         },
         {
           "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1tnpypu77dedhxpklt074pf63sj385anecws660",
-          "pub_key": null,
-          "account_number": "0",
-          "sequence": "0"
-        },
-        {
-          "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1l70s9uaqqrntuqj7yjss5cc4fwdhms4nr8az9n",
-          "pub_key": null,
-          "account_number": "0",
-          "sequence": "0"
-        },
-        {
-          "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1lrzawpfhxjy4lj26wk566r3pdqcuu5pfp4xy4e",
-          "pub_key": null,
-          "account_number": "0",
-          "sequence": "0"
-        },
-        {
-          "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1te5l2m7vcttph49crmtldmhxysscqnpylyxcye",
-          "pub_key": null,
-          "account_number": "0",
-          "sequence": "0"
-        },
-        {
-          "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6",
-          "pub_key": null,
-          "account_number": "0",
-          "sequence": "0"
-        },
-        {
-          "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1lhj77gx9cqht2z2uqm4y9gghyqgrejdnplpugf",
-          "pub_key": null,
-          "account_number": "0",
-          "sequence": "0"
-        },
-        {
-          "@type": "/cosmos.auth.v1beta1.BaseAccount",
-          "address": "somm1f2faqf9g3ng373reagj795uqvylp5dey44ql75",
+          "address": "somm1zyteclqhjm9vsf66svqxntq8g85vncr9km2920",
           "pub_key": null,
           "account_number": "0",
           "sequence": "0"
@@ -120,7 +78,7 @@
       },
       "balances": [
         {
-          "address": "somm1yzstxjv7ge5yalmdgt9k3uruxf4va42nkjc3en",
+          "address": "somm199sjfhaw3hempwzljw0lgwsm9kk6r8e5vhl2uw",
           "coins": [
             {
               "denom": "usomm",
@@ -129,7 +87,7 @@
           ]
         },
         {
-          "address": "somm1f2faqf9g3ng373reagj795uqvylp5dey44ql75",
+          "address": "somm13hga6cqmv94xdjm5vka77hec94ygumsk4fd6jf",
           "coins": [
             {
               "denom": "usomm",
@@ -138,7 +96,7 @@
           ]
         },
         {
-          "address": "somm1tnpypu77dedhxpklt074pf63sj385anecws660",
+          "address": "somm10els3w56cn3gq8uwje45ws7u9c5mqfgjngrm3f",
           "coins": [
             {
               "denom": "usomm",
@@ -147,61 +105,7 @@
           ]
         },
         {
-          "address": "somm1te5l2m7vcttph49crmtldmhxysscqnpylyxcye",
-          "coins": [
-            {
-              "denom": "usomm",
-              "amount": "1000000000000"
-            }
-          ]
-        },
-        {
-          "address": "somm1dwk34knwlywutcc6apwz7kvp5gfrh8d8zmpa7e",
-          "coins": [
-            {
-              "denom": "usomm",
-              "amount": "1000000000000"
-            }
-          ]
-        },
-        {
-          "address": "somm15axnckxz3s5vnl45ry6j2t83m4xches2z9ekce",
-          "coins": [
-            {
-              "denom": "usomm",
-              "amount": "1000000000000"
-            }
-          ]
-        },
-        {
-          "address": "somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6",
-          "coins": [
-            {
-              "denom": "usomm",
-              "amount": "1000000000000"
-            }
-          ]
-        },
-        {
-          "address": "somm1lrzawpfhxjy4lj26wk566r3pdqcuu5pfp4xy4e",
-          "coins": [
-            {
-              "denom": "usomm",
-              "amount": "1000000000000"
-            }
-          ]
-        },
-        {
-          "address": "somm1lhj77gx9cqht2z2uqm4y9gghyqgrejdnplpugf",
-          "coins": [
-            {
-              "denom": "usomm",
-              "amount": "1000000000000"
-            }
-          ]
-        },
-        {
-          "address": "somm1l70s9uaqqrntuqj7yjss5cc4fwdhms4nr8az9n",
+          "address": "somm1zyteclqhjm9vsf66svqxntq8g85vncr9km2920",
           "coins": [
             {
               "denom": "usomm",
@@ -690,14 +594,14 @@
     },
     "mint": {
       "minter": {
-        "inflation": "0.130000000000000000",
+        "inflation": "0.000000000000000000",
         "annual_provisions": "0.000000000000000000"
       },
       "params": {
         "mint_denom": "usomm",
-        "inflation_rate_change": "0.130000000000000000",
-        "inflation_max": "0.200000000000000000",
-        "inflation_min": "0.070000000000000000",
+        "inflation_rate_change": "0.000000000000000000",
+        "inflation_max": "0.000000000000000000",
+        "inflation_min": "0.000000000000000000",
         "goal_bonded": "0.670000000000000000",
         "blocks_per_year": "6311520"
       }
