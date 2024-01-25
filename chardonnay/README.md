@@ -276,17 +276,16 @@ The following changes need to be made to a generated genesis file for sommelier.
 - [x] Add funds to each cosmos address in the `./chardonnay/addresses/` folder
 
   ```bash
-  sommelier add-genesis-account somm15axnckxz3s5vnl45ry6j2t83m4xches2z9ekce 1000000000000usomm
-  sommelier add-genesis-account somm1yzstxjv7ge5yalmdgt9k3uruxf4va42nkjc3en 1000000000000usomm
-  sommelier add-genesis-account somm1dwk34knwlywutcc6apwz7kvp5gfrh8d8zmpa7e 1000000000000usomm
-  sommelier add-genesis-account somm1tnpypu77dedhxpklt074pf63sj385anecws660 1000000000000usomm
-  sommelier add-genesis-account somm1l70s9uaqqrntuqj7yjss5cc4fwdhms4nr8az9n 1000000000000usomm
-  sommelier add-genesis-account somm1lrzawpfhxjy4lj26wk566r3pdqcuu5pfp4xy4e 1000000000000usomm
-  sommelier add-genesis-account somm1te5l2m7vcttph49crmtldmhxysscqnpylyxcye 1000000000000usomm
-  sommelier add-genesis-account somm14xdxwtd2wu0flcma2qf7g2c6zx59dasuazddu6 1000000000000usomm
-  sommelier add-genesis-account somm1lhj77gx9cqht2z2uqm4y9gghyqgrejdnplpugf 1000000000000usomm
-  sommelier add-genesis-account somm1f2faqf9g3ng373reagj795uqvylp5dey44ql75 1000000000000usomm
-
+  sommelier add-genesis-account somm179j7hx3tquu960j8kaf62tdnkywddyj2r2fmpf 1000000000000usomm
+  sommelier add-genesis-account somm199sjfhaw3hempwzljw0lgwsm9kk6r8e5vhl2uw 1000000000000usomm
+  sommelier add-genesis-account somm1dts09p42gclsxl7xnumek3nj930uhdxnat90wu 1000000000000usomm
+  sommelier add-genesis-account somm13hga6cqmv94xdjm5vka77hec94ygumsk4fd6jf 1000000000000usomm
+  sommelier add-genesis-account somm1ldsrh5f0pls7awfmgerppgdlkjl4rvwgac2lu3 1000000000000usomm
+  sommelier add-genesis-account somm10els3w56cn3gq8uwje45ws7u9c5mqfgjngrm3f 1000000000000usomm
+  sommelier add-genesis-account somm1lcll2tvggqft0f3tzmh4aj40ydp9gty72y60eg 1000000000000usomm
+  sommelier add-genesis-account somm1zyteclqhjm9vsf66svqxntq8g85vncr9km2920 1000000000000usomm
+  sommelier add-genesis-account somm1qwmp82dryjl8as03w7n2c262as8afdm4eelkjh 1000000000000usomm
+  sommelier add-genesis-account somm1lqlvyhe04fshuckdsm2ye0xj0uk48tl4qgs43c 1000000000000usomm
   ```
 
 - [x] Add denom metadata for `usomm`
