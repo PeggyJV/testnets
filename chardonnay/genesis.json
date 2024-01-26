@@ -259,7 +259,7 @@
     },
     "cork": {
       "params": {
-        "vote_period": "5",
+        "vote_period": "10",
         "vote_threshold": "0.670000000000000000"
       },
       "cellar_ids": {
