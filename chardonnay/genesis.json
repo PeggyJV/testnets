@@ -213,7 +213,7 @@
       "supply": [
         {
           "denom": "usomm",
-          "amount": "6000000000000"
+          "amount": "10000000000000"
         }
       ],
       "denom_metadata": [
