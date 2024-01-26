@@ -104,7 +104,7 @@
         {
           "@type": "/cosmos.auth.v1beta1.ModuleAccount",
           "base_account": {
-              "account_number": "30",
+              "account_number": "0",
               "address": "somm1jv65s3grqf6v6jl3dp4t6c9t9rk99cd8trtsc4",
               "pub_key": null,
               "sequence": "0"
