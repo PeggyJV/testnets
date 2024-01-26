@@ -22,16 +22,6 @@
   },
   "app_hash": "",
   "app_state": {
-    "auction": {
-      "params": {
-        "price_max_block_age": "403200"
-      },
-      "auctions": [],
-      "bids": [],
-      "token_prices": [],
-      "last_auction_id": 0,
-      "last_bid_id": "0"
-    },
     "auth": {
       "params": {
         "max_memo_characters": "256",
@@ -216,7 +206,7 @@
       "supply": [
         {
           "denom": "usomm",
-          "amount": "10000000000000"
+          "amount": "200000000000000"
         }
       ],
       "denom_metadata": [
@@ -283,7 +273,12 @@
         "withdraw_addr_enabled": true
       },
       "fee_pool": {
-        "community_pool": []
+        "community_pool": [
+          {
+            "amount": "10000000000000.000000000000000000",
+            "denom": "usomm"
+          }
+        ]
       },
       "delegator_withdraw_infos": [],
       "previous_proposer": "",
@@ -658,13 +653,22 @@
         "next_channel_sequence": "0"
       }
     },
+    "incentives": {
+      "params": {
+        "distribution_per_block": {
+          "denom": "usomm",
+          "amount": "0"
+        },
+        "incentives_cutoff_height": "0"
+      }
+    },
     "interchainaccounts": {
       "controller_genesis_state": {
         "active_channels": [],
         "interchain_accounts": [],
         "ports": [],
         "params": {
-          "controller_enabled": true
+          "controller_enabled": false
         }
       },
       "host_genesis_state": {
