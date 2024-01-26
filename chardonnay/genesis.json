@@ -22,12 +22,15 @@
   },
   "app_hash": "",
   "app_state": {
-    "allocation": {
+    "auction": {
       "params": {
-        "vote_period": "5",
-        "vote_threshold": "0.670000000000000000"
+        "price_max_block_age": "403200"
       },
-      "cellars": []
+      "auctions": [],
+      "bids": [],
+      "token_prices": [],
+      "last_auction_id": 0,
+      "last_bid_id": "0"
     },
     "auth": {
       "params": {
@@ -218,16 +221,30 @@
       ],
       "denom_metadata": [
         {
-          "description": "A staking test token",
+          "base": "usomm",
           "denom_units": [
             {
+              "aliases": [
+                  "microsomm"
+              ],
               "denom": "usomm",
-              "exponent": 0,
-              "aliases": []
+              "exponent": 0
+            },
+            {
+              "aliases": [
+                  "millisomm"
+              ],
+              "denom": "msomm",
+              "exponent": 3
+            },
+            {
+              "aliases": [],
+              "denom": "somm",
+              "exponent": 6
             }
           ],
-          "base": "usomm",
-          "display": "usomm",
+          "description": "The native staking token of the Sommelier Chain",
+          "display": "somm",
           "name": "Somm",
           "symbol": "SOMM"
         }
@@ -236,6 +253,21 @@
     "capability": {
       "index": "1",
       "owners": []
+    },
+    "cellarfees": {
+      "params": {}
+    },
+    "cork": {
+      "params": {
+        "vote_period": "5",
+        "vote_threshold": "0.670000000000000000"
+      },
+      "cellar_ids": {
+        "ids": []
+      },
+      "invalidation_nonce": "0",
+      "corks": [],
+      "scheduled_corks": []
     },
     "crisis": {
       "constant_fee": {
@@ -624,6 +656,25 @@
         "recv_sequences": [],
         "ack_sequences": [],
         "next_channel_sequence": "0"
+      }
+    },
+    "interchainaccounts": {
+      "controller_genesis_state": {
+        "active_channels": [],
+        "interchain_accounts": [],
+        "ports": [],
+        "params": {
+          "controller_enabled": true
+        }
+      },
+      "host_genesis_state": {
+        "active_channels": [],
+        "interchain_accounts": [],
+        "port": "icahost",
+        "params": {
+          "host_enabled": true,
+          "allow_messages": []
+        }
       }
     },
     "mint": {
